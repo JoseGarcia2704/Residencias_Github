@@ -1,0 +1,27 @@
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Models\bin\Debug\net7.0\BlogCore.Models.deps.json
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Models\bin\Debug\net7.0\BlogCore.Models.runtimeconfig.json
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Models\bin\Debug\net7.0\BlogCore.Models.dll
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Models\bin\Debug\net7.0\BlogCore.Models.pdb
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Models\obj\Debug\net7.0\BlogCore.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Models\obj\Debug\net7.0\BlogCore.Models.AssemblyInfoInputs.cache
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Models\obj\Debug\net7.0\BlogCore.Models.AssemblyInfo.cs
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Models\obj\Debug\net7.0\BlogCore.Models.csproj.CoreCompileInputs.cache
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Models\obj\Debug\net7.0\BlogCore.Models.dll
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Models\obj\Debug\net7.0\refint\BlogCore.Models.dll
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Models\obj\Debug\net7.0\BlogCore.Models.pdb
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Models\obj\Debug\net7.0\BlogCore.Models.genruntimeconfig.cache
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Models\obj\Debug\net7.0\ref\BlogCore.Models.dll
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Models\bin\Debug\net7.0\BlogCore.Models.deps.json
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Models\bin\Debug\net7.0\BlogCore.Models.runtimeconfig.json
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Models\bin\Debug\net7.0\BlogCore.Models.dll
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Models\bin\Debug\net7.0\BlogCore.Models.pdb
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Models\obj\Debug\net7.0\BlogCore.Models.csproj.AssemblyReference.cache
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Models\obj\Debug\net7.0\BlogCore.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Models\obj\Debug\net7.0\BlogCore.Models.AssemblyInfoInputs.cache
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Models\obj\Debug\net7.0\BlogCore.Models.AssemblyInfo.cs
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Models\obj\Debug\net7.0\BlogCore.Models.csproj.CoreCompileInputs.cache
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Models\obj\Debug\net7.0\BlogCore.Models.dll
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Models\obj\Debug\net7.0\refint\BlogCore.Models.dll
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Models\obj\Debug\net7.0\BlogCore.Models.pdb
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Models\obj\Debug\net7.0\BlogCore.Models.genruntimeconfig.cache
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Models\obj\Debug\net7.0\ref\BlogCore.Models.dll

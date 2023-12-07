@@ -1,0 +1,22 @@
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Utilidades\bin\Debug\net7.0\BlogCore.Utilidades.deps.json
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Utilidades\bin\Debug\net7.0\BlogCore.Utilidades.dll
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Utilidades\bin\Debug\net7.0\BlogCore.Utilidades.pdb
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Utilidades\obj\Debug\net7.0\BlogCore.Utilidades.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Utilidades\obj\Debug\net7.0\BlogCore.Utilidades.AssemblyInfoInputs.cache
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Utilidades\obj\Debug\net7.0\BlogCore.Utilidades.AssemblyInfo.cs
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Utilidades\obj\Debug\net7.0\BlogCore.Utilidades.csproj.CoreCompileInputs.cache
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Utilidades\obj\Debug\net7.0\BlogCore.Utilidades.dll
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Utilidades\obj\Debug\net7.0\refint\BlogCore.Utilidades.dll
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Utilidades\obj\Debug\net7.0\BlogCore.Utilidades.pdb
+C:\Users\practicasti\source\repos\BlogCore\BlogCore.Utilidades\obj\Debug\net7.0\ref\BlogCore.Utilidades.dll
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Utilidades\bin\Debug\net7.0\BlogCore.Utilidades.deps.json
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Utilidades\bin\Debug\net7.0\BlogCore.Utilidades.dll
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Utilidades\bin\Debug\net7.0\BlogCore.Utilidades.pdb
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Utilidades\obj\Debug\net7.0\BlogCore.Utilidades.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Utilidades\obj\Debug\net7.0\BlogCore.Utilidades.AssemblyInfoInputs.cache
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Utilidades\obj\Debug\net7.0\BlogCore.Utilidades.AssemblyInfo.cs
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Utilidades\obj\Debug\net7.0\BlogCore.Utilidades.csproj.CoreCompileInputs.cache
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Utilidades\obj\Debug\net7.0\BlogCore.Utilidades.dll
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Utilidades\obj\Debug\net7.0\refint\BlogCore.Utilidades.dll
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Utilidades\obj\Debug\net7.0\BlogCore.Utilidades.pdb
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore.Utilidades\obj\Debug\net7.0\ref\BlogCore.Utilidades.dll
