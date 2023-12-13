@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "kRgrWVSi799MGsh8iLL8e0QH/Ov4iAgMSNMu9rLeePY=",
+  "Hash": "2yKhF9tM/nNTxSYRME1XLCO1W8ErGkz4JrrgKfbJlWI=",
   "Source": "BlogCore",
   "BasePath": "_content/BlogCore",
   "Mode": "Default",
@@ -1105,23 +1105,6 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\articulos\\0ac37b11-33d7-4198-acd2-72b9fa576346.pdf",
-      "SourceId": "BlogCore",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\",
-      "BasePath": "_content/BlogCore",
-      "RelativePath": "imagenes/articulos/0ac37b11-33d7-4198-acd2-72b9fa576346.pdf",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\imagenes\\articulos\\0ac37b11-33d7-4198-acd2-72b9fa576346.pdf"
-    },
-    {
       "Identity": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\articulos\\4af07b56-63b2-4bf8-a41c-6c72c8495092.xml",
       "SourceId": "BlogCore",
       "SourceType": "Discovered",
@@ -1154,6 +1137,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\imagenes\\articulos\\6ca996d5-561d-4309-8ac5-44548726877c.png"
+    },
+    {
+      "Identity": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\articulos\\81a13d9a-e2e6-488f-9553-ca6c1e8369d7.pdf",
+      "SourceId": "BlogCore",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\",
+      "BasePath": "_content/BlogCore",
+      "RelativePath": "imagenes/articulos/81a13d9a-e2e6-488f-9553-ca6c1e8369d7.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imagenes\\articulos\\81a13d9a-e2e6-488f-9553-ca6c1e8369d7.pdf"
     },
     {
       "Identity": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\articulos\\default.png",

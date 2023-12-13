@@ -52,6 +52,13 @@ namespace BlogCore.Areas.Admin.Controllers
                     var subidas = Path.Combine(rutaPrincipal, @"imagenes\articulos");
                     var extension = Path.GetExtension(archivos[0].FileName);
 
+                    if (extension.ToLower() != ".pdf")
+                    {
+                        ModelState.AddModelError(string.Empty, "Solo se permiten archivos con extensión .pdf");
+                        artiVM.ListaCategorias = _contenedorTrabajo.Categoria.GetListaCategorias();
+                        return View(artiVM);
+                    }
+
                     using (var fileStreams= new FileStream(Path.Combine(subidas, nombreArchivo + extension),FileMode.Create))
                     {
                         archivos[0].CopyTo(fileStreams);
@@ -100,11 +107,21 @@ namespace BlogCore.Areas.Admin.Controllers
                     var subidas = Path.Combine(rutaPrincipal, @"imagenes\articulos");
                     var extension = Path.GetExtension(archivos[0].FileName);
                     var nuevaExtension = Path.GetExtension(archivos[0].FileName);
+                    
+                    if (extension.ToLower() != ".pdf")
+                    {
+                        string mensaje = "Solo se permiten archivos con extensión .pdf";
+                        return Content($"<script type='text/javascript'>swal('Error', '{mensaje}', 'error');</script>");
+                        artiVM.ListaCategorias = _contenedorTrabajo.Categoria.GetListaCategorias();
+                        return View(artiVM);
+                    }
+
                     var  rutaImagen=Path.Combine(rutaPrincipal, articuloDesdeDb.UrlImagen.TrimStart('\\'));
                     if (System.IO.File.Exists(rutaImagen))
                     {
                         System.IO.File.Delete(rutaImagen);
                     }
+
 
                     //Nuevamente subir el archivo
                     using (var fileStreams = new FileStream(Path.Combine(subidas, nombreArchivo + extension), FileMode.Create))

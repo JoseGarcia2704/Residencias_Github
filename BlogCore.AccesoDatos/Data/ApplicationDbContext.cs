@@ -13,5 +13,6 @@ namespace BlogCore.Data
         //Se tiene que migrar cada modelo que se cree
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<Articulo> Articulo {  get; set; }
+        public DbSet<Proveedor> Proveedor { get; set; }
     }
 }
