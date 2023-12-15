@@ -66,11 +66,11 @@ namespace BlogCore.Models
 
         [DataType(DataType.ImageUrl)]
         [Display(Name = "Pdf")]
-        public string UrlPdf { get; set; }
+        public string PdfUrl { get; set; }
 
        
         [DataType(DataType.ImageUrl)]
         [Display(Name = "Xml")]
-        public string UrlXml { get; set; }
+        public string XmlUrl { get; set; }
     }
 }

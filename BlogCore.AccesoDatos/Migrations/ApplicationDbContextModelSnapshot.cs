@@ -108,14 +108,14 @@ namespace BlogCore.Data.Migrations
                     b.Property<string>("Notas")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PdfUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Solicitante")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UrlPdf")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UrlXml")
+                    b.Property<string>("XmlUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("comentariosSeguimiento")
