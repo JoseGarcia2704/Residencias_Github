@@ -14,7 +14,7 @@ namespace BlogCore.Models
         [Key]
         public int OrdenCompra { get; set; }
 
-
+        [Required(ErrorMessage = "La fecha de registro es obligatoria")]
         [Display(Name = "Fecha de registro")]
         public string FechaRegistro { get; set; }
 
@@ -47,7 +47,7 @@ namespace BlogCore.Models
         public string fechaPago { get; set; }
 
 
-
+        [Display(Name = "Nombre del proveedor")]
         [Required(ErrorMessage = "El nombre del proveedor es obligatorio")]
         public string nombreProveedor { get; set; }
 
@@ -69,13 +69,10 @@ namespace BlogCore.Models
         [Display(Name = "Archivo PDF")]
         public IFormFile ArchivoPDF { get; set; }
 
-        // Propiedad para el archivo XML
-        [DataType(DataType.Upload)]
-        [RegularExpression(@"^.+\.(xml)$", ErrorMessage = "Por favor, seleccione un archivo XML válido.")]
-        [Display(Name = "Archivo XML")]
-        public IFormFile ArchivoXML { get; set; }
 
 
-        */
+        [DataType(DataType.ImageUrl)]
+        [Display(Name = "Xml")]
+        public string UrlXml { get; set; }
     }
 }
