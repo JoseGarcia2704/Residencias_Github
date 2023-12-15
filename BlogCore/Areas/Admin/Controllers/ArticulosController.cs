@@ -52,9 +52,9 @@ namespace BlogCore.Areas.Admin.Controllers
                     var subidas = Path.Combine(rutaPrincipal, @"imagenes\articulos");
                     var extension = Path.GetExtension(archivos[0].FileName);
 
-                    if (extension.ToLower() != ".pdf")
+                    if (extension != ".jpg" && extension != ".jpeg" && extension != ".png")
                     {
-                        ModelState.AddModelError(string.Empty, "Solo se permiten archivos con extensión .pdf");
+                        ModelState.AddModelError(string.Empty, "Solo se permiten archivos con extensión .jpg, .jpeg o .png");
                         artiVM.ListaCategorias = _contenedorTrabajo.Categoria.GetListaCategorias();
                         return View(artiVM);
                     }
@@ -107,11 +107,10 @@ namespace BlogCore.Areas.Admin.Controllers
                     var subidas = Path.Combine(rutaPrincipal, @"imagenes\articulos");
                     var extension = Path.GetExtension(archivos[0].FileName);
                     var nuevaExtension = Path.GetExtension(archivos[0].FileName);
-                    
-                    if (extension.ToLower() != ".pdf")
+
+                    if (extension != ".jpg" && extension != ".jpeg" && extension != ".png")
                     {
-                        string mensaje = "Solo se permiten archivos con extensión .pdf";
-                        return Content($"<script type='text/javascript'>swal('Error', '{mensaje}', 'error');</script>");
+                        ModelState.AddModelError(string.Empty, "Solo se permiten archivos con extensión .jpg, .jpeg o .png");
                         artiVM.ListaCategorias = _contenedorTrabajo.Categoria.GetListaCategorias();
                         return View(artiVM);
                     }

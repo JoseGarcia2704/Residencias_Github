@@ -19,30 +19,32 @@ namespace BlogCore.Models
         public string FechaRegistro { get; set; }
 
 
+        [Display(Name ="Nombre del solicitante")]
         [Required(ErrorMessage = "El nombre del socilitante es obligatorio")]
         public string Solicitante { get; set; }
 
 
+        [Display(Name ="Moneda")]
         [Required(ErrorMessage = "La moneda es obligatoria")]
         public string Moneda { get; set; }
 
 
-
+        [Display(Name = "Monto")]
         [Required(ErrorMessage = "El monto es obligatorio")]
         public int Monto { get; set; }
 
 
-
+        [Display(Name = "Folio")]
         [Required(ErrorMessage = "El folio es obligatoria")]
         public string Folio { get; set; }
 
 
-
+        [Display(Name = "Estatus")]
         [Required(ErrorMessage = "El estatus es obligatoria")]
         public string Estatus { get; set; }
 
 
-
+        [Display(Name = "Fecha de pago")]
         [Required(ErrorMessage = "La Fecha programada de pago es obligatoria")]
         public string fechaPago { get; set; }
 
@@ -59,18 +61,14 @@ namespace BlogCore.Models
 
 
 
-        [Required(ErrorMessage = "El complemento es obligatoria")]
+        [Required(ErrorMessage = "El complemento de pago es obligatoria")]
         public string Complemento { get; set; }
 
-        /*
-        // Propiedad para el archivo PDF
-        [DataType(DataType.Upload)]
-        [RegularExpression(@"^.+\.(pdf)$", ErrorMessage = "Por favor, seleccione un archivo PDF válido.")]
-        [Display(Name = "Archivo PDF")]
-        public IFormFile ArchivoPDF { get; set; }
+        [DataType(DataType.ImageUrl)]
+        [Display(Name = "Pdf")]
+        public string UrlPdf { get; set; }
 
-
-
+       
         [DataType(DataType.ImageUrl)]
         [Display(Name = "Xml")]
         public string UrlXml { get; set; }
