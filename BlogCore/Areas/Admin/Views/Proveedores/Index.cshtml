@@ -1,0 +1,47 @@
+﻿<style>
+    #tblProveedores th, #tblProveedores td {
+        white-space: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+   
+</style>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-8">
+            <h2 class="text-primary">Lista de Proveedores</h2>
+        </div>
+        <div class="col-4" text-right>
+            <a asp-action="Create" class="btn btn-primary">
+                <i class="fas fa-plus" style="margin-right: 5px;"></i>
+                Crear nueva linea
+            </a>
+        </div>
+    </div>
+    <br />
+    <br />
+    <table id="tblProveedores" class="table table-striped table-bordered" style=" font-size: 15px;">
+        <thead>
+            <tr>
+                <th>Orden de compra</th>
+                <th>Fecha de registro</th>
+                <th>Solicitante</th>
+                <th>Moneda</th>
+                <th>Monto</th>
+                <th>Folio</th>
+                <th>Estatus</th>
+                <th>Fecha de pago</th>
+                <th>Proveedor</th>
+                <th>Notas</th>
+                <th>Comentarios de seguimiento</th>
+                <th>Complemento</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts{
+    <script src="~/js/proveedores.js"></script>
+}

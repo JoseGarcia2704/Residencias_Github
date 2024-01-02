@@ -274,14 +274,6 @@ C:\Users\practicasti\source\repos\BlogCore\BlogCore\bin\Debug\net7.0\System.Web.
 C:\Users\practicasti\source\repos\BlogCore\BlogCore\bin\Debug\net7.0\System.Web.WebPages.Razor.dll
 C:\Users\practicasti\source\repos\BlogCore\BlogCore\bin\Debug\net7.0\System.Web.WebPages.dll
 C:\Users\practicasti\source\repos\BlogCore\BlogCore\bin\Debug\net7.0\Microsoft.Web.Infrastructure.dll
-C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\BlogCore.csproj.AssemblyReference.cache
-C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\BlogCore.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\BlogCore.AssemblyInfoInputs.cache
-C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\BlogCore.AssemblyInfo.cs
-C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\BlogCore.csproj.CoreCompileInputs.cache
-C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\BlogCore.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\BlogCore.RazorAssemblyInfo.cache
-C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\BlogCore.RazorAssemblyInfo.cs
 C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\bin\Debug\net7.0\appsettings.json
 C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\bin\Debug\net7.0\BlogCore.staticwebassets.runtime.json
@@ -535,6 +527,15 @@ C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\bin\Debug\net7.0\Blo
 C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\bin\Debug\net7.0\BlogCore.AccesoDatos.pdb
 C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\bin\Debug\net7.0\BlogCore.Models.pdb
 C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\bin\Debug\net7.0\BlogCore.Utilidades.pdb
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\BlogCore.csproj.AssemblyReference.cache
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\BlogCore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\BlogCore.AssemblyInfoInputs.cache
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\BlogCore.AssemblyInfo.cs
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\BlogCore.csproj.CoreCompileInputs.cache
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\BlogCore.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\BlogCore.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\BlogCore.RazorAssemblyInfo.cache
+C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\BlogCore.RazorAssemblyInfo.cs
 C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\staticwebassets\msbuild.BlogCore.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\staticwebassets\msbuild.build.BlogCore.props
 C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.BlogCore.props
@@ -551,4 +552,3 @@ C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\ref
 C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\BlogCore.pdb
 C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\BlogCore.genruntimeconfig.cache
 C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\ref\BlogCore.dll
-C:\Users\practicasti\source\repos\BlogCore - copia\BlogCore\obj\Debug\net7.0\BlogCore.MvcApplicationPartsAssemblyInfo.cs

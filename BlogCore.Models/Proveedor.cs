@@ -14,7 +14,6 @@ namespace BlogCore.Models
         [Key]
         public int OrdenCompra { get; set; }
 
-        [Required(ErrorMessage = "La fecha de registro es obligatoria")]
         [Display(Name = "Fecha de registro")]
         public string FechaRegistro { get; set; }
 
@@ -45,7 +44,6 @@ namespace BlogCore.Models
 
 
         [Display(Name = "Fecha de pago")]
-        [Required(ErrorMessage = "La Fecha programada de pago es obligatoria")]
         public string fechaPago { get; set; }
 
 
@@ -63,6 +61,7 @@ namespace BlogCore.Models
 
         [Required(ErrorMessage = "El complemento de pago es obligatoria")]
         public string Complemento { get; set; }
+
 
         [DataType(DataType.ImageUrl)]
         [Display(Name = "Pdf")]

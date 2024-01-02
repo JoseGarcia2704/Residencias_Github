@@ -1,11 +1,11 @@
-﻿var dataDable;
+﻿var dataTable;
 
 $(document).ready(function () {
     cargarDatatable();
 })
 
 function cargarDatatable() {
-    dataDable = $("#tblArticulos").DataTable({
+    dataTable = $("#tblArticulos").DataTable({
         "ajax": {
             "url": "/admin/articulos/GetAll",
             "type": "GET",

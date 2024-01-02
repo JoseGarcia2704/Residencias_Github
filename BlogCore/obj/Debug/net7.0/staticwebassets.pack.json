@@ -5,6 +5,22 @@
       "PackagePath": "staticwebassets\\BlogCore.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\Documentos\\Pdf\\30816882-307f-4332-8fec-e6a60b98bc1b.pdf",
+      "PackagePath": "staticwebassets\\Documentos\\Pdf\\30816882-307f-4332-8fec-e6a60b98bc1b.pdf"
+    },
+    {
+      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\Documentos\\Pdf\\6f834e24-0bb4-415e-a838-98fa69b85bed.pdf",
+      "PackagePath": "staticwebassets\\Documentos\\Pdf\\6f834e24-0bb4-415e-a838-98fa69b85bed.pdf"
+    },
+    {
+      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\Documentos\\Xml\\43aec7fd-a3fd-4913-9ac9-976622b5e4c3.xml",
+      "PackagePath": "staticwebassets\\Documentos\\Xml\\43aec7fd-a3fd-4913-9ac9-976622b5e4c3.xml"
+    },
+    {
+      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\Documentos\\Xml\\a0f15b7d-6a7c-429f-8bb3-a33b26a3b40e.xml",
+      "PackagePath": "staticwebassets\\Documentos\\Xml\\a0f15b7d-6a7c-429f-8bb3-a33b26a3b40e.xml"
+    },
+    {
       "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -17,16 +33,12 @@
       "PackagePath": "staticwebassets\\imagenes\\Img_necesarias\\Logo2.png"
     },
     {
+      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\articulos\\29dcd722-3dff-4822-ad83-2432ab817749.jpg",
+      "PackagePath": "staticwebassets\\imagenes\\articulos\\29dcd722-3dff-4822-ad83-2432ab817749.jpg"
+    },
+    {
       "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\articulos\\43a8cf4c-ab56-47ad-b326-e8f7ededc445.png",
       "PackagePath": "staticwebassets\\imagenes\\articulos\\43a8cf4c-ab56-47ad-b326-e8f7ededc445.png"
-    },
-    {
-      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\articulos\\4af07b56-63b2-4bf8-a41c-6c72c8495092.xml",
-      "PackagePath": "staticwebassets\\imagenes\\articulos\\4af07b56-63b2-4bf8-a41c-6c72c8495092.xml"
-    },
-    {
-      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\articulos\\6ca996d5-561d-4309-8ac5-44548726877c.png",
-      "PackagePath": "staticwebassets\\imagenes\\articulos\\6ca996d5-561d-4309-8ac5-44548726877c.png"
     },
     {
       "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\articulos\\default.png",
@@ -39,6 +51,10 @@
     {
       "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\js\\categoria.js",
       "PackagePath": "staticwebassets\\js\\categoria.js"
+    },
+    {
+      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\js\\proveedores.js",
+      "PackagePath": "staticwebassets\\js\\proveedores.js"
     },
     {
       "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\js\\site.js",

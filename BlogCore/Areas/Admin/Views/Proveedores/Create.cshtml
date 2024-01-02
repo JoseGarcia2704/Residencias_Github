@@ -1,0 +1,221 @@
+﻿@model BlogCore.Models.ViewModels.ProveedorVM
+
+
+@{
+    ViewData["Title"] = "Crear una Nueva linea";
+
+}
+<style>
+    .form-border {
+        border: 1px solid #000; /* 1px de ancho y color negro */
+    }
+</style>
+
+<br />
+<br />
+
+<h2 class="text-center">Crear una Nueva linea</h2>
+<br />
+
+
+<form method="POST" asp-action="Create" enctype="multipart/form-data">
+    <div class="row px-2 offset-1 border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-10 offset-1 mt-4">
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Proveedor.Solicitante"></label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Proveedor.Solicitante" class="form-control form-border" placeholder="Ingrese el nombre del solicitante" />
+                    <span asp-validation-for="Proveedor.Solicitante" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Proveedor.Moneda"></label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Proveedor.Moneda" class="form-control form-border" placeholder="Ingresa la moneda" />
+                    <span asp-validation-for="Proveedor.Moneda" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Proveedor.Monto"></label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Proveedor.Monto" class="form-control form-border" placeholder="Ingrese el Monto" />
+                    <span asp-validation-for="Proveedor.Monto" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Proveedor.Folio"></label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Proveedor.Folio" class="form-control form-border" placeholder="Ingrese el Folio" />
+                    <span asp-validation-for="Proveedor.Folio" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Proveedor.Estatus"></label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Proveedor.Estatus" class="form-control form-border" placeholder="Ingrese el status" />
+                    <span asp-validation-for="Proveedor.Estatus" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Proveedor.nombreProveedor"></label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Proveedor.nombreProveedor" class="form-control form-border" placeholder="Ingrese el nombre del proveedor" />
+                    <span asp-validation-for="Proveedor.nombreProveedor" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Proveedor.Notas"></label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Proveedor.Notas" class="form-control form-border" placeholder="Ingrese las notas" />
+                    <span asp-validation-for="Proveedor.Notas" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Proveedor.comentariosSeguimiento"> Comentarios de seguimiento</label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Proveedor.comentariosSeguimiento" class="form-control form-border" placeholder="Ingrese los comentarios de seguimiento" />
+                    <span asp-validation-for="Proveedor.comentariosSeguimiento" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <br />
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Proveedor.Complemento"></label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Proveedor.Complemento" class="form-control form-border" placeholder="Ingrese complemento" />
+                    <span asp-validation-for="Proveedor.Complemento" class="text-danger"></span>
+                </div>
+            </div>
+
+            
+            <br />
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Proveedor.XmlUrl"></label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="archivosXml" id="subidaArchivosXml" class="form-control" />
+
+                </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Proveedor.PdfUrl"></label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="archivosPdf" id="subidaArchivosPdf" class="form-control" />
+
+                </div>
+            </div>
+
+            <!--
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="PdfUrl"></label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="PdfUrl" class="form-control form-border" placeholder="Pdf de la factura" />
+                    <span asp-validation-for="PdfUrl" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+            <br />
+            
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Articulo.UrlImagen"></label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="archivos" id="subidaArchivos" class="form-control" />
+
+                </div>
+
+            </div>
+            -->
+            <br />
+            <div class="form-group row">
+                <div class="col-8">
+                    <partial name="_VistaCrearVolver" />
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</form>
+
+@section Scripts
+    {
+    <script src="https://cdn.tiny.cloud/1/qukxrn62f4bz0iv6z7enaelkkzuzugir28y709xit9xm659s/tinymce/5/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'lists',
+            menubar: 'file edit format'
+
+        });
+    </script>
+    }

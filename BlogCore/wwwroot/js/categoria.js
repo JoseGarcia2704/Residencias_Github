@@ -1,4 +1,4 @@
-﻿var dataDable;
+﻿var dataTable;
 
 $(document).ready(function () {
     cargarDatatable();
