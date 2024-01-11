@@ -19,27 +19,22 @@ namespace BlogCore.Models
 
 
         [Display(Name ="Nombre del solicitante")]
-        [Required(ErrorMessage = "El nombre del socilitante es obligatorio")]
         public string Solicitante { get; set; }
 
 
         [Display(Name ="Moneda")]
-        [Required(ErrorMessage = "La moneda es obligatoria")]
         public string Moneda { get; set; }
 
 
         [Display(Name = "Monto")]
-        [Required(ErrorMessage = "El monto es obligatorio")]
         public int Monto { get; set; }
 
 
         [Display(Name = "Folio")]
-        [Required(ErrorMessage = "El folio es obligatoria")]
         public string Folio { get; set; }
 
 
         [Display(Name = "Estatus")]
-        [Required(ErrorMessage = "El estatus es obligatoria")]
         public string Estatus { get; set; }
 
 
@@ -48,7 +43,6 @@ namespace BlogCore.Models
 
 
         [Display(Name = "Nombre del proveedor")]
-        [Required(ErrorMessage = "El nombre del proveedor es obligatorio")]
         public string nombreProveedor { get; set; }
 
 
@@ -59,7 +53,6 @@ namespace BlogCore.Models
 
 
 
-        [Required(ErrorMessage = "El complemento de pago es obligatoria")]
         public string Complemento { get; set; }
 
 

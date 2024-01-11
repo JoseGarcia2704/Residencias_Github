@@ -13,29 +13,30 @@ function cargarDatatable() {
         },
 
         "columns": [
-            { "data": "ordenCompra", "width": "5%" },
-            { "data": "fechaRegistro", "width": "5%" },
-            { "data": "solicitante", "width": "5%" },
-            { "data": "moneda", "width": "5%" },
-            { "data": "monto", "width": "5%" },
-            { "data": "folio", "width": "5%" },
-            { "data": "estatus", "width": "5%" },
-            { "data": "fechaPago", "width": "5%" },
-            { "data": "nombreProveedor", "width": "5%" },
-            { "data": "notas", "width": "5%" },
-            { "data": "comentariosSeguimiento", "width": "5%" },
-            { "data": "complemento", "width": "5%" },
+            { "data": "ordenCompra", "width": "3%" },
+            { "data": "fechaRegistro", "width": "3%" },
+            { "data": "solicitante", "width": "3%" },
+            { "data": "moneda", "width": "3%" },
+            { "data": "monto", "width": "3%" },
+            { "data": "folio", "width": "3%" },
+            { "data": "estatus", "width": "3%" },
+            { "data": "fechaPago", "width": "3%" },
+            { "data": "nombreProveedor", "width": "3%" },
+            { "data": "notas", "width": "3%" },
+            { "data": "comentariosSeguimiento", "width": "3%" },
+            { "data": "complemento", "width": "3%" },
 
 
             {
                 "data": "ordenCompra",
                 "render": function (data) {
                     return `<div class="text-center">
-                         <a href="/Admin/Proveedores/Edit/${data}" class="btn btn-success text-white" style="cursor:pointer;width:80px;font-size: 15px; text-align: left;">
+
+                         <a href="/Admin/Proveedores/Edit/${data}" class="btn btn-success text-white" style="cursor:pointer;width:60px;font-size: 12px; text-align: left;">
                          <i class="far fa-edit"></i>Editar
                          </a>
                          &nbsp;
-                          <a onclick=Delete("/Admin/Proveedores/Delete/${data}") class="btn btn-danger text-white" style="cursor:pointer; width:80px; font-size: 15px; text-align: left;">
+                          <a onclick=Delete("/Admin/Proveedores/Delete/${data}") class="btn btn-danger text-white" style="cursor:pointer; width:60px; font-size: 12px; text-align: left;">
                                 <i class="far fa-trash-alt"></i>Borrar
                                 </a>
 
