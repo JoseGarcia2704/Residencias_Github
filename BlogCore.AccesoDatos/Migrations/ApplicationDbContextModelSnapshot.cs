@@ -74,22 +74,41 @@ namespace BlogCore.Data.Migrations
                     b.ToTable("Categoria");
                 });
 
-            modelBuilder.Entity("BlogCore.Models.Proveedor", b =>
+            modelBuilder.Entity("BlogCore.Models.Complemento", b =>
                 {
-                    b.Property<int>("OrdenCompra")
+                    b.Property<int>("idComplemento")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrdenCompra"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idComplemento"));
 
-                    b.Property<string>("Complemento")
+                    b.Property<float>("Monto")
+                        .HasColumnType("real");
+
+                    b.Property<string>("UUIDC")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("saldoInsoluto")
+                        .HasColumnType("real");
+
+                    b.HasKey("idComplemento");
+
+                    b.ToTable("Complemento");
+                });
+
+            modelBuilder.Entity("BlogCore.Models.Proveedor", b =>
+                {
+                    b.Property<int>("idProveedor")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idProveedor"));
 
                     b.Property<string>("Estatus")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FechaRegistro")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("FechaRegistro")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Folio")
                         .HasColumnType("nvarchar(max)");
@@ -103,10 +122,16 @@ namespace BlogCore.Data.Migrations
                     b.Property<string>("Notas")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("OrdenCompra")
+                        .HasColumnType("int");
+
                     b.Property<string>("PdfUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Solicitante")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UUIDF")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("XmlUrl")
@@ -115,15 +140,77 @@ namespace BlogCore.Data.Migrations
                     b.Property<string>("comentariosSeguimiento")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("fechaPago")
+                    b.Property<DateTime>("fechaFactura")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("fechaPago")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("fechaProximaPago")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("idComplementoFK")
+                        .HasColumnType("int");
+
+                    b.Property<int>("idUsuarioFK")
+                        .HasColumnType("int");
+
+                    b.Property<string>("metodoPago")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("nombreProveedor")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("OrdenCompra");
+                    b.Property<string>("statusComplemento")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("idProveedor");
+
+                    b.HasIndex("idComplementoFK");
+
+                    b.HasIndex("idUsuarioFK");
 
                     b.ToTable("Proveedor");
+                });
+
+            modelBuilder.Entity("BlogCore.Models.Usuario", b =>
+                {
+                    b.Property<int>("idUsuario")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idUsuario"));
+
+                    b.Property<string>("Correo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Rfc")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("idRolFK")
+                        .HasColumnType("int");
+
+                    b.HasKey("idUsuario");
+
+                    b.HasIndex("idRolFK");
+
+                    b.ToTable("Usuario");
+                });
+
+            modelBuilder.Entity("BlogCore.Models.rolUsuario", b =>
+                {
+                    b.Property<int>("idRol")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idRol"));
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("idRol");
+
+                    b.ToTable("RolUsuario");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -337,6 +424,36 @@ namespace BlogCore.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Categoria");
+                });
+
+            modelBuilder.Entity("BlogCore.Models.Proveedor", b =>
+                {
+                    b.HasOne("BlogCore.Models.Complemento", "Complemento")
+                        .WithMany()
+                        .HasForeignKey("idComplementoFK")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BlogCore.Models.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("idUsuarioFK")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Complemento");
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("BlogCore.Models.Usuario", b =>
+                {
+                    b.HasOne("BlogCore.Models.rolUsuario", "rolUsuario")
+                        .WithMany()
+                        .HasForeignKey("idRolFK")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("rolUsuario");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

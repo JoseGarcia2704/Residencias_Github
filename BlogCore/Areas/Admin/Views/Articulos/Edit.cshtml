@@ -45,7 +45,7 @@
                     </label>
                 </div>
                 <div class="col-8">
-                    <textarea asp-for="Articulo.Descripcion" class="form-control" style="height:300px;"></textarea>
+                    <textarea asp-for="Articulo.Descripcion" class="form-control" style="height:300px;">@Html.Raw(Model.Articulo.Descripcion)</textarea>
                     <span asp-validation-for="Articulo.Descripcion" class="text-danger"></span>
                 </div>
 

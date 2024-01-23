@@ -1,0 +1,30 @@
+﻿<div class="container mt-4">
+    <div class="row">
+        <div class="col-8">
+            <h2 class="text-primary">Lista de Complementos</h2>
+        </div>
+        <div class="col-4" text-right>
+            <a asp-action="Create" class="btn btn-primary">
+                <i class="fas fa-plus" style="margin-right: 5px;"></i>
+                Crear nuevo complementos
+            </a>
+        </div>
+    </div>
+    <br />
+    <br />
+    <table id="tblComplementos" class="table table-striped table table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>idComplemento</th>
+                <th>UUIDC</th>
+                <th>Monto</th>
+                <th>saldoInsoluto</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts{
+    <script src="~/js/complementos.js"></script>
+}

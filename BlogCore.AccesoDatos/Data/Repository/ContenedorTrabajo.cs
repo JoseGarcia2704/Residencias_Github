@@ -19,10 +19,13 @@ namespace BlogCore.AccesoDatos.Data.Repository
             Categoria = new CategoriaRepository(_db);
             Articulo =new ArticuloRepository(_db);
             Proveedor =new ProveedorRepository(_db);
+            Complemento =new ComplementoRepository(_db);
         }
         public ICategoriaRepository Categoria { get; private set; }
         public IArticuloRepository Articulo { get; private set; }
         public IProveedorRepository Proveedor { get; private set; }
+
+        public IComplementoRepository Complemento { get; private set; }
         public void Dispose()
         {
             _db.Dispose();

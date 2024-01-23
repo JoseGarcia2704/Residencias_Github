@@ -19,7 +19,7 @@
 
 
 <form method="POST" asp-action="Edit" enctype="multipart/form-data">
- <input  type="hidden" asp-for="Proveedor.OrdenCompra"/>
+ <input  type="hidden" asp-for="Proveedor.idProveedor"/>
     <div class="row px-2 offset-1 border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="col-10 offset-1 mt-4">
@@ -70,7 +70,7 @@
             <br />
             <div class="form-group row">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary form-control" asp-route-Id="@Model.Proveedor.OrdenCompra">Actualizar</button>
+                    <button type="submit" class="btn btn-primary form-control" asp-route-Id="@Model.Proveedor.idProveedor">Actualizar</button>
                 </div>
                 <div class="col">
                     <a asp-action="Index" class="btn btn-success form-control">Volver a lista</a>

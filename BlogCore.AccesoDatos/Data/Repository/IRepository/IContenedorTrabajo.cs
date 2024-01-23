@@ -13,6 +13,9 @@ namespace BlogCore.AccesoDatos.Data.Repository.IRepository
         IArticuloRepository Articulo { get; }
         
         IProveedorRepository Proveedor { get; }
+
+        IComplementoRepository Complemento { get; }
+
         void Save();
     }
 }

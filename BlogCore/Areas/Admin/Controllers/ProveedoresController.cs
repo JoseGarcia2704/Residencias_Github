@@ -45,7 +45,7 @@ namespace BlogCore.Areas.Admin.Controllers
                 string rutaPrincipal = _hostingEnvironment.WebRootPath;
                 var archivos = HttpContext.Request.Form.Files;
 
-                if (proveVM.Proveedor.OrdenCompra == 0 && archivos.Count == 2)
+                if (proveVM.Proveedor.idProveedor == 0 && archivos.Count == 2)
                 {
                     // Nueva proveedor con dos archivos
                     string nombreArchivo1 = Guid.NewGuid().ToString();
@@ -70,8 +70,10 @@ namespace BlogCore.Areas.Admin.Controllers
                         archivos[0].CopyTo(fileStream1);
                         archivos[1].CopyTo(fileStream2);
                     }
-                    proveVM.Proveedor.FechaRegistro = DateTime.Now.ToString();
-                    proveVM.Proveedor.fechaPago = DateTime.Now.ToString();
+                    proveVM.Proveedor.FechaRegistro = DateTime.Now;
+                    proveVM.Proveedor.fechaPago = DateTime.Now;
+                    proveVM.Proveedor.fechaProximaPago = DateTime.Now;
+                    proveVM.Proveedor.fechaFactura = DateTime.Now;
                     proveVM.Proveedor.XmlUrl = @"\Documentos\Xml\" + nombreArchivo1 + extension1;
                     proveVM.Proveedor.PdfUrl = @"\Documentos\Pdf\" + nombreArchivo2 + extension2;
 
@@ -109,24 +111,31 @@ namespace BlogCore.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 // Obtener el proveedor existente de la base de datos
-                Proveedor proveedorExistente = _contenedorTrabajo.Proveedor.Get(proveVM.Proveedor.OrdenCompra);
+                Proveedor proveedorExistente = _contenedorTrabajo.Proveedor.Get(proveVM.Proveedor.idProveedor);
 
                 // Copiar los valores que no se están editando desde el proveedor existente al proveedor recibido
-                proveVM.Proveedor.Solicitante = proveedorExistente.Solicitante;
-                proveVM.Proveedor.Moneda = proveedorExistente.Moneda;
-                proveVM.Proveedor.Monto = proveedorExistente.Monto;
+                proveVM.Proveedor.OrdenCompra = proveedorExistente.OrdenCompra;
+                proveVM.Proveedor.statusComplemento = proveedorExistente.statusComplemento;
                 proveVM.Proveedor.Folio = proveedorExistente.Folio;
+                proveVM.Proveedor.Monto = proveedorExistente.Monto;
                 proveVM.Proveedor.Estatus = proveedorExistente.Estatus;
-                proveVM.Proveedor.nombreProveedor = proveedorExistente.nombreProveedor;
-                proveVM.Proveedor.comentariosSeguimiento = proveedorExistente.comentariosSeguimiento;
+                proveVM.Proveedor.UUIDF=proveedorExistente.UUIDF;
                 proveVM.Proveedor.PdfUrl = proveedorExistente.PdfUrl;
                 proveVM.Proveedor.XmlUrl = proveedorExistente.XmlUrl;
-                proveVM.Proveedor.Complemento = proveedorExistente.Complemento;
+                proveVM.Proveedor.metodoPago = proveedorExistente.metodoPago;
+                proveVM.Proveedor.Solicitante = proveedorExistente.Solicitante;
+                proveVM.Proveedor.comentariosSeguimiento = proveedorExistente.comentariosSeguimiento;
+                proveVM.Proveedor.nombreProveedor = proveedorExistente.nombreProveedor;
+                proveVM.Proveedor.Moneda = proveedorExistente.Moneda;
+               proveVM.Proveedor.idComplementoFK= proveedorExistente.idComplementoFK;
+                proveVM.Proveedor.idUsuarioFK = proveedorExistente.idUsuarioFK;
+
 
                 // Actualizar otras propiedades del proveedor
-                proveVM.Proveedor.FechaRegistro = DateTime.Now.ToString();
-                proveVM.Proveedor.fechaPago = DateTime.Now.ToString();
-
+                proveVM.Proveedor.FechaRegistro = DateTime.Now;
+                proveVM.Proveedor.fechaPago = DateTime.Now;
+                proveVM.Proveedor.fechaProximaPago = DateTime.Now;
+                proveVM.Proveedor.fechaFactura = DateTime.Now;
                 // Actualizar el proveedor en la base de datos
                 _contenedorTrabajo.Proveedor.Update(proveVM.Proveedor);
                 _contenedorTrabajo.Save();

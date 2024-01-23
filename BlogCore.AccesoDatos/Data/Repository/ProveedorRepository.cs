@@ -1,6 +1,7 @@
 ﻿using BlogCore.AccesoDatos.Data.Repository.IRepository;
 using BlogCore.Data;
 using BlogCore.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,17 +28,26 @@ namespace BlogCore.AccesoDatos.Data.Repository
             //no se usara por el momento
             // objetoDesdeDb.FechaRegistro=proveedor.FechaRegistro;
             // objetoDesdeDb.fechaPago=proveedor.fechaPago;
+            objetoDesdeDb.OrdenCompra = proveedor.OrdenCompra;
+            objetoDesdeDb.statusComplemento = proveedor.statusComplemento;
+            objetoDesdeDb.Folio = proveedor.Folio;
+            objetoDesdeDb.Monto = proveedor.Monto;
+            objetoDesdeDb.Notas = proveedor.Notas;
+            objetoDesdeDb.Estatus = proveedor.Estatus;
+            objetoDesdeDb.UUIDF = proveedor.UUIDF;
+            objetoDesdeDb.XmlUrl = proveedor.XmlUrl;
+            objetoDesdeDb.PdfUrl = proveedor.PdfUrl;
+            objetoDesdeDb.metodoPago = objetoDesdeDb.metodoPago;
             objetoDesdeDb.Solicitante=proveedor.Solicitante;
-            objetoDesdeDb.Moneda=proveedor.Moneda;
-            objetoDesdeDb.Monto=proveedor.Monto;
-            objetoDesdeDb.Folio=proveedor.Folio;
-            objetoDesdeDb.Estatus=proveedor.Estatus;
-            objetoDesdeDb.nombreProveedor=proveedor.nombreProveedor;
-            objetoDesdeDb.Notas=proveedor.Notas;
             objetoDesdeDb.comentariosSeguimiento = proveedor.comentariosSeguimiento;
-            objetoDesdeDb.Complemento=proveedor.Complemento;
-            objetoDesdeDb.XmlUrl=proveedor.XmlUrl;
-            objetoDesdeDb.PdfUrl=proveedor.PdfUrl;
+            objetoDesdeDb.nombreProveedor = proveedor.nombreProveedor;
+            objetoDesdeDb.Moneda=proveedor.Moneda;
+            objetoDesdeDb.FechaRegistro = proveedor.FechaRegistro;
+            objetoDesdeDb.fechaPago = proveedor.fechaPago;
+            objetoDesdeDb.fechaProximaPago = proveedor.fechaProximaPago;
+            objetoDesdeDb.fechaFactura = proveedor.fechaFactura;
+            objetoDesdeDb.idComplementoFK = proveedor.idComplementoFK;
+            objetoDesdeDb.idUsuarioFK = proveedor.idUsuarioFK;
            // _db.SaveChanges();
         }
 

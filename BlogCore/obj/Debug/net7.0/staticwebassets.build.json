@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nv/dvpMFpawupQawSmN28xJS0gzXMutoEXDb49R/zWM=",
+  "Hash": "gdwvWS+X358W81rJjO9hACVsz+TKe85GfJ1GCslnUv0=",
   "Source": "BlogCore",
   "BasePath": "_content/BlogCore",
   "Mode": "Default",
@@ -1088,12 +1088,12 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\Documentos\\Pdf\\5a207530-1d24-43bf-800e-e0af423236ce.pdf",
+      "Identity": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\Documentos\\Pdf\\debc3d84-6a24-4d8c-8d58-f09af0621e18.pdf",
       "SourceId": "BlogCore",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\",
       "BasePath": "_content/BlogCore",
-      "RelativePath": "Documentos/Pdf/5a207530-1d24-43bf-800e-e0af423236ce.pdf",
+      "RelativePath": "Documentos/Pdf/debc3d84-6a24-4d8c-8d58-f09af0621e18.pdf",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1102,15 +1102,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Documentos\\Pdf\\5a207530-1d24-43bf-800e-e0af423236ce.pdf"
+      "OriginalItemSpec": "wwwroot\\Documentos\\Pdf\\debc3d84-6a24-4d8c-8d58-f09af0621e18.pdf"
     },
     {
-      "Identity": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\Documentos\\Pdf\\9513246d-d43a-429e-942e-34c06fb35ba9.pdf",
+      "Identity": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\Documentos\\Xml\\23e55c38-3d1a-4912-aac1-b7236277196b.xml",
       "SourceId": "BlogCore",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\",
       "BasePath": "_content/BlogCore",
-      "RelativePath": "Documentos/Pdf/9513246d-d43a-429e-942e-34c06fb35ba9.pdf",
+      "RelativePath": "Documentos/Xml/23e55c38-3d1a-4912-aac1-b7236277196b.xml",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1119,41 +1119,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Documentos\\Pdf\\9513246d-d43a-429e-942e-34c06fb35ba9.pdf"
-    },
-    {
-      "Identity": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\Documentos\\Xml\\0029ec7c-2492-4fe4-adc4-16ea344e9bb8.xml",
-      "SourceId": "BlogCore",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\",
-      "BasePath": "_content/BlogCore",
-      "RelativePath": "Documentos/Xml/0029ec7c-2492-4fe4-adc4-16ea344e9bb8.xml",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Documentos\\Xml\\0029ec7c-2492-4fe4-adc4-16ea344e9bb8.xml"
-    },
-    {
-      "Identity": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\Documentos\\Xml\\0a811284-eb9a-4335-8f09-36c502c93a8e.xml",
-      "SourceId": "BlogCore",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\",
-      "BasePath": "_content/BlogCore",
-      "RelativePath": "Documentos/Xml/0a811284-eb9a-4335-8f09-36c502c93a8e.xml",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Documentos\\Xml\\0a811284-eb9a-4335-8f09-36c502c93a8e.xml"
+      "OriginalItemSpec": "wwwroot\\Documentos\\Xml\\23e55c38-3d1a-4912-aac1-b7236277196b.xml"
     },
     {
       "Identity": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\favicon.ico",
@@ -1224,6 +1190,23 @@
       "OriginalItemSpec": "wwwroot\\imagenes\\articulos\\default.png"
     },
     {
+      "Identity": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\articulos\\ffc78d19-10c0-4e78-8ceb-0f02781e7b1b.png",
+      "SourceId": "BlogCore",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\",
+      "BasePath": "_content/BlogCore",
+      "RelativePath": "imagenes/articulos/ffc78d19-10c0-4e78-8ceb-0f02781e7b1b.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imagenes\\articulos\\ffc78d19-10c0-4e78-8ceb-0f02781e7b1b.png"
+    },
+    {
       "Identity": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\Img_necesarias\\Logo2.png",
       "SourceId": "BlogCore",
       "SourceType": "Discovered",
@@ -1273,6 +1256,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\categoria.js"
+    },
+    {
+      "Identity": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\js\\complementos.js",
+      "SourceId": "BlogCore",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\",
+      "BasePath": "_content/BlogCore",
+      "RelativePath": "js/complementos.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\complementos.js"
     },
     {
       "Identity": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\js\\proveedores.js",

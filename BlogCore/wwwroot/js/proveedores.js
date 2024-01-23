@@ -28,7 +28,7 @@ function cargarDatatable() {
 
 
             {
-                "data": "ordenCompra",
+                "data": "idProveedor",
                 "render": function (data) {
                     return `<div class="text-center">
 

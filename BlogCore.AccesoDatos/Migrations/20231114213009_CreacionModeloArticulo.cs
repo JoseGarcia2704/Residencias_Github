@@ -2,6 +2,8 @@
 
 #nullable disable
 
+#nullable disable
+
 namespace BlogCore.Data.Migrations
 {
     /// <inheritdoc />

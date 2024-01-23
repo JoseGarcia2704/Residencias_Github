@@ -23,15 +23,17 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="col-10 offset-1 mt-4">
 
+
+
             <div class="form-group row">
                 <div class="col-4">
                     <label class="col-4">
-                        <label asp-for="Proveedor.Solicitante"></label>
+                        <label asp-for="Proveedor.OrdenCompra"></label>
                     </label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Proveedor.Solicitante" class="form-control form-border" placeholder="Ingrese el nombre del solicitante" />
-                    <span asp-validation-for="Proveedor.Solicitante" class="text-danger"></span>
+                    <input asp-for="Proveedor.OrdenCompra" class="form-control form-border" placeholder="Ingrese la orden de compra" />
+                    <span asp-validation-for="Proveedor.OrdenCompra" class="text-danger"></span>
                 </div>
             </div>
             <br />
@@ -39,15 +41,29 @@
             <div class="form-group row">
                 <div class="col-4">
                     <label class="col-4">
-                        <label asp-for="Proveedor.Moneda"></label>
+                        <label asp-for="Proveedor.statusComplemento"></label>
                     </label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Proveedor.Moneda" class="form-control form-border" placeholder="Ingresa la moneda" />
-                    <span asp-validation-for="Proveedor.Moneda" class="text-danger"></span>
+                    <input asp-for="Proveedor.statusComplemento" class="form-control form-border" placeholder="Ingrese el Status del complemento" />
+                    <span asp-validation-for="Proveedor.statusComplemento" class="text-danger"></span>
                 </div>
             </div>
             <br />
+
+            <div class="form-group row">
+            <div class="col-4">
+                <label class="col-4">
+                    <label asp-for="Proveedor.Folio"></label>
+                </label>
+            </div>
+            <div class="col-8">
+                <input asp-for="Proveedor.Folio" class="form-control form-border" placeholder="Ingrese el Folio" />
+                <span asp-validation-for="Proveedor.Folio" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+
 
             <div class="form-group row">
                 <div class="col-4">
@@ -62,44 +78,6 @@
             </div>
             <br />
 
-            <div class="form-group row">
-                <div class="col-4">
-                    <label class="col-4">
-                        <label asp-for="Proveedor.Folio"></label>
-                    </label>
-                </div>
-                <div class="col-8">
-                    <input asp-for="Proveedor.Folio" class="form-control form-border" placeholder="Ingrese el Folio" />
-                    <span asp-validation-for="Proveedor.Folio" class="text-danger"></span>
-                </div>
-            </div>
-            <br />
-
-            <div class="form-group row">
-                <div class="col-4">
-                    <label class="col-4">
-                        <label asp-for="Proveedor.Estatus"></label>
-                    </label>
-                </div>
-                <div class="col-8">
-                    <input asp-for="Proveedor.Estatus" class="form-control form-border" placeholder="Ingrese el status" />
-                    <span asp-validation-for="Proveedor.Estatus" class="text-danger"></span>
-                </div>
-            </div>
-            <br />
-
-            <div class="form-group row">
-                <div class="col-4">
-                    <label class="col-4">
-                        <label asp-for="Proveedor.nombreProveedor"></label>
-                    </label>
-                </div>
-                <div class="col-8">
-                    <input asp-for="Proveedor.nombreProveedor" class="form-control form-border" placeholder="Ingrese el nombre del proveedor" />
-                    <span asp-validation-for="Proveedor.nombreProveedor" class="text-danger"></span>
-                </div>
-            </div>
-            <br />
 
             <div class="form-group row">
                 <div class="col-4">
@@ -115,33 +93,35 @@
             <br />
 
             <div class="form-group row">
-                <div class="col-4">
-                    <label class="col-4">
-                        <label asp-for="Proveedor.comentariosSeguimiento"> Comentarios de seguimiento</label>
-                    </label>
-                </div>
-                <div class="col-8">
-                    <input asp-for="Proveedor.comentariosSeguimiento" class="form-control form-border" placeholder="Ingrese los comentarios de seguimiento" />
-                    <span asp-validation-for="Proveedor.comentariosSeguimiento" class="text-danger"></span>
-                </div>
+            <div class="col-4">
+                <label class="col-4">
+                    <label asp-for="Proveedor.Estatus"></label>
+                </label>
             </div>
-            <br />
-            <br />
+            <div class="col-8">
+                <input asp-for="Proveedor.Estatus" class="form-control form-border" placeholder="Ingrese el status" />
+                <span asp-validation-for="Proveedor.Estatus" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+
+           
+            
 
             <div class="form-group row">
-                <div class="col-4">
-                    <label class="col-4">
-                        <label asp-for="Proveedor.Complemento"></label>
-                    </label>
-                </div>
-                <div class="col-8">
-                    <input asp-for="Proveedor.Complemento" class="form-control form-border" placeholder="Ingrese complemento" />
-                    <span asp-validation-for="Proveedor.Complemento" class="text-danger"></span>
-                </div>
+            <div class="col-4">
+                <label class="col-4">
+                    <label asp-for="Proveedor.UUIDF"></label>
+                </label>
             </div>
+            <div class="col-8">
+                <input asp-for="Proveedor.UUIDF" class="form-control form-border" placeholder="Ingrese el UUID de la factura" />
+                <span asp-validation-for="Proveedor.UUIDF" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
 
-            
-            <br />
+
             <div class="form-group row">
                 <div class="col-4">
                     <label class="col-4">
@@ -165,6 +145,73 @@
 
                 </div>
             </div>
+            <br />
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Proveedor.metodoPago"></label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Proveedor.metodoPago" class="form-control form-border" placeholder="Ingrese el metodo de pago" />
+                    <span asp-validation-for="Proveedor.metodoPago" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Proveedor.Solicitante"></label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Proveedor.Solicitante" class="form-control form-border" placeholder="Ingrese el nombre del solicitante" />
+                    <span asp-validation-for="Proveedor.Solicitante" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Proveedor.comentariosSeguimiento"> Comentarios de seguimiento</label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Proveedor.comentariosSeguimiento" class="form-control form-border" placeholder="Ingrese los comentarios de seguimiento" />
+                    <span asp-validation-for="Proveedor.comentariosSeguimiento" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Proveedor.nombreProveedor"></label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Proveedor.nombreProveedor" class="form-control form-border" placeholder="Ingrese el nombre del proveedor" />
+                    <span asp-validation-for="Proveedor.nombreProveedor" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Proveedor.Moneda"></label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Proveedor.Moneda" class="form-control form-border" placeholder="Ingresa la moneda" />
+                    <span asp-validation-for="Proveedor.Moneda" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            
 
             <!--
             <div class="form-group row">
