@@ -19,7 +19,9 @@ namespace BlogCore.AccesoDatos.Data.Repository
             _db = db;
         }
 
-        public IEnumerable<SelectListItem> GetListaCategorias()
+       
+
+        public IEnumerable<SelectListItem> GetListaComplemento()
         {
         return _db.Complemento.Select(i=>new SelectListItem()
             {

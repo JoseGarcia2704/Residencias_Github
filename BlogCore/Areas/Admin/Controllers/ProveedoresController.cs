@@ -31,7 +31,9 @@ namespace BlogCore.Areas.Admin.Controllers
         {
             ProveedorVM proveVM = new ProveedorVM()
             {
-                Proveedor = new BlogCore.Models.Proveedor()
+                Proveedor = new BlogCore.Models.Proveedor(),
+            ListaComplemento = _contenedorTrabajo.Complemento.GetListaComplemento()
+
             };
             return View(proveVM);
         }
@@ -76,6 +78,7 @@ namespace BlogCore.Areas.Admin.Controllers
                     proveVM.Proveedor.fechaFactura = DateTime.Now;
                     proveVM.Proveedor.XmlUrl = @"\Documentos\Xml\" + nombreArchivo1 + extension1;
                     proveVM.Proveedor.PdfUrl = @"\Documentos\Pdf\" + nombreArchivo2 + extension2;
+                    proveVM.Proveedor.idUsuarioFK = 1;
 
                     _contenedorTrabajo.Proveedor.add(proveVM.Proveedor);
                     _contenedorTrabajo.Save();
@@ -153,7 +156,7 @@ namespace BlogCore.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Json(new { data = _contenedorTrabajo.Proveedor.GetAll() });
+            return Json(new { data = _contenedorTrabajo.Proveedor.GetAll(includeProperties: "Usuario,Complemento") });
         }
 
         [HttpDelete]

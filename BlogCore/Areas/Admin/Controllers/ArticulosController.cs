@@ -24,6 +24,33 @@ namespace BlogCore.Areas.Admin.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult AbrirPdf(int id)
+        {
+            var articulo = _contenedorTrabajo.Articulo.Get(id);
+
+            if (articulo == null)
+            {
+                return NotFound(); // O manejar de acuerdo a tus necesidades
+            }
+
+            var rutaPdf = Path.Combine(_hostingEnvironment.WebRootPath, articulo.UrlImagen.TrimStart('\\'));
+
+            if (!System.IO.File.Exists(rutaPdf))
+            {
+                return NotFound(); // O manejar de acuerdo a tus necesidades
+            }
+
+            byte[] fileBytes = System.IO.File.ReadAllBytes(rutaPdf);
+            string fileName = "Anuncio.pdf";
+
+            return File(fileBytes, "application/pdf", fileName);
+        }
+
+
+
+
+
 
         [HttpGet]
         public IActionResult Create()
@@ -48,31 +75,32 @@ namespace BlogCore.Areas.Admin.Controllers
                 if (artiVM.Articulo.Id == 0)
                 {
                     //Nuevo Articulo
-                    String nombreArchivo=Guid.NewGuid().ToString();
-                    var subidas = Path.Combine(rutaPrincipal, @"imagenes\articulos");
+                    String nombreArchivo = Guid.NewGuid().ToString();
+                    var subidas = Path.Combine(rutaPrincipal, @"Documentos\Anuncios");
                     var extension = Path.GetExtension(archivos[0].FileName);
 
-                    if (extension != ".jpg" && extension != ".jpeg" && extension != ".png")
+                    if (extension != ".pdf" )
                     {
-                        ModelState.AddModelError(string.Empty, "Solo se permiten archivos con extensión .jpg, .jpeg o .png");
+                        ModelState.AddModelError(string.Empty, "Solo se permiten archivos con extensión .pdf");
                         artiVM.ListaCategorias = _contenedorTrabajo.Categoria.GetListaCategorias();
                         return View(artiVM);
                     }
 
-                    using (var fileStreams= new FileStream(Path.Combine(subidas, nombreArchivo + extension),FileMode.Create))
+                    using (var fileStreams = new FileStream(Path.Combine(subidas, nombreArchivo + extension), FileMode.Create))
                     {
                         archivos[0].CopyTo(fileStreams);
                     }
-                    artiVM.Articulo.UrlImagen=@"\imagenes\articulos\"+nombreArchivo+extension;
+                    artiVM.Articulo.UrlImagen = @"Documentos\Anuncios\" + nombreArchivo + extension;
                     artiVM.Articulo.FechaCreacion = DateTime.Now.ToString();
                     _contenedorTrabajo.Articulo.add(artiVM.Articulo);
                     _contenedorTrabajo.Save();
                     return RedirectToAction(nameof(Index));
                 }
             }
-            artiVM.ListaCategorias=_contenedorTrabajo.Categoria.GetListaCategorias();
+            artiVM.ListaCategorias = _contenedorTrabajo.Categoria.GetListaCategorias();
             return View(artiVM);
         }
+
 
         [HttpGet]
         public IActionResult Edit(int? id)
@@ -102,50 +130,52 @@ namespace BlogCore.Areas.Admin.Controllers
 
                 if (archivos.Count() > 0)
                 {
-                    //Nueva imagen para el articulo
-                    String nombreArchivo = Guid.NewGuid().ToString();
-                    var subidas = Path.Combine(rutaPrincipal, @"imagenes\articulos");
+                    // Nueva imagen para el artículo
+                    string nombreArchivo = Guid.NewGuid().ToString();
+                    var subidas = Path.Combine(rutaPrincipal, @"Documentos\Anuncios");
                     var extension = Path.GetExtension(archivos[0].FileName);
-                    var nuevaExtension = Path.GetExtension(archivos[0].FileName);
 
-                    if (extension != ".jpg" && extension != ".jpeg" && extension != ".png")
+                    if (extension != ".pdf")
                     {
-                        ModelState.AddModelError(string.Empty, "Solo se permiten archivos con extensión .jpg, .jpeg o .png");
+                        ModelState.AddModelError(string.Empty, "Solo se permiten archivos con extensión .pdf");
                         artiVM.ListaCategorias = _contenedorTrabajo.Categoria.GetListaCategorias();
                         return View(artiVM);
                     }
 
-                    var  rutaImagen=Path.Combine(rutaPrincipal, articuloDesdeDb.UrlImagen.TrimStart('\\'));
+                    var rutaImagen = Path.Combine(rutaPrincipal, articuloDesdeDb.UrlImagen.TrimStart('\\'));
+
                     if (System.IO.File.Exists(rutaImagen))
                     {
                         System.IO.File.Delete(rutaImagen);
                     }
 
-
-                    //Nuevamente subir el archivo
+                    // Nuevamente subir el archivo
                     using (var fileStreams = new FileStream(Path.Combine(subidas, nombreArchivo + extension), FileMode.Create))
                     {
                         archivos[0].CopyTo(fileStreams);
                     }
-                    artiVM.Articulo.UrlImagen = @"\imagenes\articulos\" + nombreArchivo + extension;
+
+                    artiVM.Articulo.UrlImagen = Path.Combine("Documentos", "Anuncios", nombreArchivo + extension);
                     artiVM.Articulo.FechaCreacion = DateTime.Now.ToString();
-                  
+
                     _contenedorTrabajo.Articulo.Update(artiVM.Articulo);
                     _contenedorTrabajo.Save();
                     return RedirectToAction(nameof(Index));
                 }
                 else
                 {
-                    //Aqui seria cuando la imagen ya existe y se conserva
+                    // Aquí sería cuando la imagen ya existe y se conserva
                     artiVM.Articulo.UrlImagen = articuloDesdeDb.UrlImagen;
-                    
                 }
+
                 _contenedorTrabajo.Articulo.Update(artiVM.Articulo);
                 _contenedorTrabajo.Save();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(artiVM);
         }
+
 
         #region 
         [HttpGet]

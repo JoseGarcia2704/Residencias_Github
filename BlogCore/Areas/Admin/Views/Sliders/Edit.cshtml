@@ -1,0 +1,97 @@
+﻿@model BlogCore.Models.Slider
+
+@{
+    ViewData["Title"] = "Editar Slider";
+
+}
+<style>
+    .form-border {
+        border: 1px solid #000; /* 1px de ancho y color negro */
+    }
+</style>
+<br />
+<br />
+
+<h2 class="text-center">Editar un Slider</h2>
+<br />
+
+
+<form method="POST" asp-action="Edit" enctype="multipart/form-data">
+    <input type="hidden" asp-for="idSlider" />
+    <div class="row px-2 offset-1 border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-8 mt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Nombre"></label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Nombre" class="form-control form-border" placeholder="Ingrese el slider" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Estado"></label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Estado" />
+                    <span asp-validation-for="Estado" class="text-danger"></span>
+                </div>
+
+            </div>
+            <br />
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="UrlImagen"></label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="archivos" id="subidaArchivos" class="form-control" />
+                    <span asp-validation-for="UrlImagen" class="text-danger"></span>
+                </div>
+
+            </div>
+            <br />
+            <br />
+            <div class="form-group row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary form-control" asp-route-Id="@Model.idSlider">Actualizar</button>
+                </div>
+                <div class="col">
+                    <a asp-action="Index" class="btn btn-success form-control">Volver a lista</a>
+                </div>
+            </div>
+            <br />
+            <br />
+        </div>
+
+        <!-- Nueva sección para la imagen a la derecha -->
+        <div class="col-4 pt-3 image-container">
+            <img src="@Model.UrlImagen" class="slider-image" width="100%" />
+        </div>
+    </div>
+</form>
+
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="https://cdn.tiny.cloud/1/qukxrn62f4bz0iv6z7enaelkkzuzugir28y709xit9xm659s/tinymce/5/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'lists',
+            menubar: 'file edit format'
+
+        });
+    </script>
+}

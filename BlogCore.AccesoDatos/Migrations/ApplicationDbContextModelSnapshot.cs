@@ -173,6 +173,29 @@ namespace BlogCore.Data.Migrations
                     b.ToTable("Proveedor");
                 });
 
+            modelBuilder.Entity("BlogCore.Models.Slider", b =>
+                {
+                    b.Property<int>("idSlider")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idSlider"));
+
+                    b.Property<bool?>("Estado")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UrlImagen")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("idSlider");
+
+                    b.ToTable("Slider");
+                });
+
             modelBuilder.Entity("BlogCore.Models.Usuario", b =>
                 {
                     b.Property<int>("idUsuario")

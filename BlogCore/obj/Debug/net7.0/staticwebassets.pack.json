@@ -5,12 +5,40 @@
       "PackagePath": "staticwebassets\\BlogCore.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\Documentos\\Anuncios\\bfd54170-f4b1-4b0e-83db-d8cdb4d72a2f.pdf",
+      "PackagePath": "staticwebassets\\Documentos\\Anuncios\\bfd54170-f4b1-4b0e-83db-d8cdb4d72a2f.pdf"
+    },
+    {
+      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\Documentos\\Pdf\\5b417278-ce53-4cf4-835f-49aa6cae0984.pdf",
+      "PackagePath": "staticwebassets\\Documentos\\Pdf\\5b417278-ce53-4cf4-835f-49aa6cae0984.pdf"
+    },
+    {
+      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\Documentos\\Pdf\\afbda68a-1d25-4ffc-98e2-59fb306b47d8.pdf",
+      "PackagePath": "staticwebassets\\Documentos\\Pdf\\afbda68a-1d25-4ffc-98e2-59fb306b47d8.pdf"
+    },
+    {
       "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\Documentos\\Pdf\\debc3d84-6a24-4d8c-8d58-f09af0621e18.pdf",
       "PackagePath": "staticwebassets\\Documentos\\Pdf\\debc3d84-6a24-4d8c-8d58-f09af0621e18.pdf"
     },
     {
+      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\Documentos\\Pdf\\fe5a597c-14b5-4297-90c0-811059de13aa.pdf",
+      "PackagePath": "staticwebassets\\Documentos\\Pdf\\fe5a597c-14b5-4297-90c0-811059de13aa.pdf"
+    },
+    {
+      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\Documentos\\Xml\\12601fae-db06-4035-b2e8-2692ac0ff549.xml",
+      "PackagePath": "staticwebassets\\Documentos\\Xml\\12601fae-db06-4035-b2e8-2692ac0ff549.xml"
+    },
+    {
       "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\Documentos\\Xml\\23e55c38-3d1a-4912-aac1-b7236277196b.xml",
       "PackagePath": "staticwebassets\\Documentos\\Xml\\23e55c38-3d1a-4912-aac1-b7236277196b.xml"
+    },
+    {
+      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\Documentos\\Xml\\e4a81734-daf6-4215-9bbc-086e9e7910dc.xml",
+      "PackagePath": "staticwebassets\\Documentos\\Xml\\e4a81734-daf6-4215-9bbc-086e9e7910dc.xml"
+    },
+    {
+      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\Documentos\\Xml\\e55564c0-31b3-4722-938e-b09ab04bbdc4.xml",
+      "PackagePath": "staticwebassets\\Documentos\\Xml\\e55564c0-31b3-4722-938e-b09ab04bbdc4.xml"
     },
     {
       "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\css\\site.css",
@@ -21,24 +49,28 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\Img_necesarias\\Anuncios.jpeg",
+      "PackagePath": "staticwebassets\\imagenes\\Img_necesarias\\Anuncios.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\Img_necesarias\\Comunicado.png",
+      "PackagePath": "staticwebassets\\imagenes\\Img_necesarias\\Comunicado.png"
+    },
+    {
       "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\Img_necesarias\\Logo2.png",
       "PackagePath": "staticwebassets\\imagenes\\Img_necesarias\\Logo2.png"
     },
     {
-      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\articulos\\29dcd722-3dff-4822-ad83-2432ab817749.jpg",
-      "PackagePath": "staticwebassets\\imagenes\\articulos\\29dcd722-3dff-4822-ad83-2432ab817749.jpg"
+      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\sliders\\0a49ff05-abbf-4bd4-a1a7-09f30ca31aa4.png",
+      "PackagePath": "staticwebassets\\imagenes\\sliders\\0a49ff05-abbf-4bd4-a1a7-09f30ca31aa4.png"
     },
     {
-      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\articulos\\43a8cf4c-ab56-47ad-b326-e8f7ededc445.png",
-      "PackagePath": "staticwebassets\\imagenes\\articulos\\43a8cf4c-ab56-47ad-b326-e8f7ededc445.png"
+      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\sliders\\a2468007-add7-4a49-8724-c6d581f253c6.jpeg",
+      "PackagePath": "staticwebassets\\imagenes\\sliders\\a2468007-add7-4a49-8724-c6d581f253c6.jpeg"
     },
     {
-      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\articulos\\default.png",
-      "PackagePath": "staticwebassets\\imagenes\\articulos\\default.png"
-    },
-    {
-      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\articulos\\ffc78d19-10c0-4e78-8ceb-0f02781e7b1b.png",
-      "PackagePath": "staticwebassets\\imagenes\\articulos\\ffc78d19-10c0-4e78-8ceb-0f02781e7b1b.png"
+      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\imagenes\\sliders\\bf4b2c1a-1af9-424f-ad7a-aa3da7f1b9ee.png",
+      "PackagePath": "staticwebassets\\imagenes\\sliders\\bf4b2c1a-1af9-424f-ad7a-aa3da7f1b9ee.png"
     },
     {
       "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\js\\articulos.js",
@@ -61,8 +93,16 @@
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
+      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\js\\slider.js",
+      "PackagePath": "staticwebassets\\js\\slider.js"
+    },
+    {
       "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\lib\\bootstrap\\dist\\css\\Propio.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\Propio.css"
     },
     {
       "Id": "C:\\Users\\practicasti\\source\\repos\\BlogCore - copia\\BlogCore\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",

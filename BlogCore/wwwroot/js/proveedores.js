@@ -24,7 +24,7 @@ function cargarDatatable() {
             { "data": "nombreProveedor", "width": "3%" },
             { "data": "notas", "width": "3%" },
             { "data": "comentariosSeguimiento", "width": "3%" },
-            { "data": "complemento", "width": "3%" },
+            { "data": "statusComplemento", "width": "3%" },
 
 
             {

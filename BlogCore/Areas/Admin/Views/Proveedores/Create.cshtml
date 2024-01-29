@@ -212,7 +212,31 @@
             </div>
             <br />
             
+            <div class="form-group row mt-2">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Proveedor.idComplementoFK">Categoria</label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.Proveedor.idComplementoFK,Model.ListaComplemento,"Por favor seleccione una Proveedor",
+                    new {@class="form-control"})
+                </div>
 
+            </div>
+            <br />
+            @* <div class="form-group row mt-2">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Proveedor.idUsuarioFK">Categoria</label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.Proveedor.idUsuarioFK,Model.ListaUsuario,"Por favor seleccione un usuario",
+                    new {@class="form-control"})
+                </div>
+
+            </div> *@
             <!--
             <div class="form-group row">
                 <div class="col-4">

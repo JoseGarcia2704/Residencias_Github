@@ -10,7 +10,7 @@ namespace BlogCore.AccesoDatos.Data.Repository.IRepository
 {
     public interface IComplementoRepository :IRepository<Complemento>
     {
-        IEnumerable<SelectListItem> GetListaCategorias();
+        IEnumerable<SelectListItem> GetListaComplemento();
         void Update(Complemento complemento);
     }
 }

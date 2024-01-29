@@ -16,6 +16,7 @@ namespace BlogCore.Data
         public DbSet<Proveedor> Proveedor { get; set;}
         public DbSet<rolUsuario> RolUsuario { get; set; }
         public DbSet<Complemento> Complemento { get; set; }
+        public DbSet<Slider> Slider { get; set; }
 
     }
 }
