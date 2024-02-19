@@ -10,8 +10,10 @@ namespace BlogCore.Models.ViewModels
     public class ProveedorVM
     {
         public Proveedor Proveedor { get; set; }
+
+        public Complemento Complemento { get; set; }
         public IEnumerable<SelectListItem> ListaComplemento { get; set; }
         //public IEnumerable<SelectListItem> ListaUsuario { get; set; }
-
+         
     }
 }

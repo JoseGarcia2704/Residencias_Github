@@ -21,6 +21,8 @@ namespace BlogCore.AccesoDatos.Data.Repository
             Proveedor =new ProveedorRepository(_db);
             Complemento =new ComplementoRepository(_db);
             Slider =new SliderRepository(_db);
+            Usuario = new UsuarioRepository(_db);
+
         }
         public ICategoriaRepository Categoria { get; private set; }
         public IArticuloRepository Articulo { get; private set; }
@@ -29,6 +31,8 @@ namespace BlogCore.AccesoDatos.Data.Repository
         public IComplementoRepository Complemento { get; private set; }
 
         public ISliderRepository Slider { get; private set; }
+        public IUsuarioRepository Usuario { get; private set; }
+
         public void Dispose()
         {
             _db.Dispose();

@@ -16,6 +16,8 @@ namespace BlogCore.AccesoDatos.Data.Repository.IRepository
 
         IComplementoRepository Complemento { get; }
         ISliderRepository Slider { get; }
+        IUsuarioRepository Usuario { get; }
+
 
         void Save();
     }

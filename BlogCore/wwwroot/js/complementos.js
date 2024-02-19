@@ -14,24 +14,28 @@ function cargarDatatable() { // Corregido el nombre de la función
         },
         "columns": [
             { "data": "idComplemento", "width": "5%" },
-            { "data": "uuidc", "width": "30%" },
-            { "data": "monto", "width": "20%" },
+            { "data": "uuidc", "width": "20%" },
+            { "data": "monto", "width": "15%" },
             { "data": "saldoInsoluto", "width": "20%" },
             {
                 "data": "idComplemento",
                 "render": function (data) {
                     return `<div class="text-center">
                          <a href="/Admin/Complementos/Edit/${data}" class="btn btn-success text-white" style="cursor:pointer;width:100px;">
-                         <i class="far fa-edit"></i>Editar
+                         <i class="far fa-edit"></i>&nbsp;Editar
                          </a>
                          &nbsp;
                           <a onclick=Delete("/Admin/Complementos/Delete/${data}") class="btn btn-danger text-white" style="cursor:pointer; width:100px;">
-                                <i class="far fa-trash-alt"></i>Borrar
+                                <i class="far fa-trash-alt"></i>&nbsp;Borrar
+                                </a>
+                                 &nbsp;
+                          <a href="/Admin/Complementos/VerPdf/${data}" class="btn btn-success text-white" style="cursor:pointer; width:100px;">
+                               <i class="far fa-file-pdf"></i> &nbsp;Ver Pdf
                                 </a>
 
                     </div>
                     `;
-                }, "width": "30%"
+                }, "width": "45%"
             }
 
         ],

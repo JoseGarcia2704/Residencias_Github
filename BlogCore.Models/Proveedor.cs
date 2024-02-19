@@ -28,7 +28,7 @@ namespace BlogCore.Models
 
 
         [Display(Name = "Monto")]
-        public int Monto { get; set; }
+        public float Monto { get; set; }
 
         public string Notas { get; set; }
 
@@ -92,13 +92,8 @@ namespace BlogCore.Models
         public Complemento Complemento { get; set; }
 
 
-        [Required]
-        public int idUsuarioFK { get; set; }
-
-       [ForeignKey("idUsuarioFK")]
-        public Usuario Usuario { get; set; }
-       
-
+        
+     
 
 
 

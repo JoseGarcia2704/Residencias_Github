@@ -17,7 +17,7 @@ namespace BlogCore.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.12")
+                .HasAnnotation("ProductVersion", "7.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -85,7 +85,13 @@ namespace BlogCore.Data.Migrations
                     b.Property<float>("Monto")
                         .HasColumnType("real");
 
+                    b.Property<string>("PdfUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UUIDC")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("XmlUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("saldoInsoluto")
@@ -116,8 +122,8 @@ namespace BlogCore.Data.Migrations
                     b.Property<string>("Moneda")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Monto")
-                        .HasColumnType("int");
+                    b.Property<float>("Monto")
+                        .HasColumnType("real");
 
                     b.Property<string>("Notas")
                         .HasColumnType("nvarchar(max)");
@@ -152,9 +158,6 @@ namespace BlogCore.Data.Migrations
                     b.Property<int>("idComplementoFK")
                         .HasColumnType("int");
 
-                    b.Property<int>("idUsuarioFK")
-                        .HasColumnType("int");
-
                     b.Property<string>("metodoPago")
                         .HasColumnType("nvarchar(max)");
 
@@ -168,8 +171,6 @@ namespace BlogCore.Data.Migrations
 
                     b.HasIndex("idComplementoFK");
 
-                    b.HasIndex("idUsuarioFK");
-
                     b.ToTable("Proveedor");
                 });
 
@@ -181,7 +182,7 @@ namespace BlogCore.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idSlider"));
 
-                    b.Property<bool?>("Estado")
+                    b.Property<bool>("Estado")
                         .HasColumnType("bit");
 
                     b.Property<string>("Nombre")
@@ -194,46 +195,6 @@ namespace BlogCore.Data.Migrations
                     b.HasKey("idSlider");
 
                     b.ToTable("Slider");
-                });
-
-            modelBuilder.Entity("BlogCore.Models.Usuario", b =>
-                {
-                    b.Property<int>("idUsuario")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idUsuario"));
-
-                    b.Property<string>("Correo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Rfc")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("idRolFK")
-                        .HasColumnType("int");
-
-                    b.HasKey("idUsuario");
-
-                    b.HasIndex("idRolFK");
-
-                    b.ToTable("Usuario");
-                });
-
-            modelBuilder.Entity("BlogCore.Models.rolUsuario", b =>
-                {
-                    b.Property<int>("idRol")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idRol"));
-
-                    b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("idRol");
-
-                    b.ToTable("RolUsuario");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -300,6 +261,10 @@ namespace BlogCore.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -351,6 +316,10 @@ namespace BlogCore.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -381,12 +350,10 @@ namespace BlogCore.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -423,12 +390,10 @@ namespace BlogCore.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -436,6 +401,21 @@ namespace BlogCore.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("BlogCore.Models.ApplicationUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("Rfc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("razonSocial")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
             modelBuilder.Entity("BlogCore.Models.Articulo", b =>
@@ -457,26 +437,7 @@ namespace BlogCore.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BlogCore.Models.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("idUsuarioFK")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Complemento");
-
-                    b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("BlogCore.Models.Usuario", b =>
-                {
-                    b.HasOne("BlogCore.Models.rolUsuario", "rolUsuario")
-                        .WithMany()
-                        .HasForeignKey("idRolFK")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("rolUsuario");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

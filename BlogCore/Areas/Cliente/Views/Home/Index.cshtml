@@ -1,76 +1,78 @@
-﻿    @model BlogCore.Models.ViewModels.HomeVM
+﻿@model BlogCore.Models.ViewModels.HomeVM
+@using BlogCore.Utilidades
 
-
-
-<div class="row fondoTitulo mt-1">
-    
-    <div class="col-sm-12">
-        <h2 class="text-center text-black py-1">Bienvenidos Proveedores</h2>
-    </div>
-    <br />
-</div>
-
-
-
-<div id="carouselExampleControls" class="carousel slide custom-carousel" data-bs-ride="carousel" style="max-height: 800px; max-width:150%; overflow: hidden;">
-    <div class="carousel-inner">
-        @{
-            int cont = 0;
-        }
-        @foreach (var item in Model.Slider)
-        {
-            @if (item.Estado == true)
-            {
-                var itemDinamico = cont++ == 0 ? " active" : "";
-                <div class="carousel-item @itemDinamico">
-                    <img src="@Url.Content(item.UrlImagen)" class="d-block w-100" alt="@Html.Raw(item.Nombre)" style="object-fit: cover; max-height: 700px;">
-                    <div class="carousel-caption text-center">
-                        <h1 class="text-white" style="font-size: 2.5rem;">@Html.Raw(item.Nombre)</h1>
-                    </div>
-                </div>
-            }
-        }
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-</div>
-
-
-
-
-@if (Model.ListaArticulos != null && Model.ListaArticulos.Count() > 0)
-{
-        <hr />
-        <div class="row">
-        @foreach (var articulo in Model.ListaArticulos.OrderBy(o => o.Id))
-            {
-                <div class="col-4">
-                <div class="card border-success mb-3" style="max-width: 20rem;">
-                    <img src="~/imagenes/Img_necesarias/comunicado.png" class="img-thumbnail" style="width: 400px; height: 300px; border-radius=30px;" />
-                    <div class="card-body">
-                            <h5 class="text-center">@articulo.Nombre</h5>
-                        <a asp-action="AbrirPdf" asp-controller="Articulos" asp-route-id="@articulo.Id" target="_blank" class="btn btn-success" style="border-radius:2px">
-                            Mas informacion
-                        </a>
-
-                    </div>
-                    </div>
-
-                </div>
-            }
-
+<div class="container">
+    <div class="row fondoTitulo mt-1">
+        <div class="col-sm-12">
+            <h2 class="text-center text-black py-1">Portal de Proveedores</h2>
+        </div>
     </div>
 
-    }
-    else
+
+    @if (!(User.IsInRole(CNT.Admin) || User.IsInRole(CNT.Usuario)))
     {
-    <p>No hay articulos</p>
+        <div class="container-fluid">
+            <div class="row justify-content-center mt-3">
+                <div id="carouselExampleControls" class="carousel slide custom-carousel" data-bs-ride="carousel" style="width: 100%; overflow: hidden;">
+                    <div class="carousel-inner">
+                        @{
+                            int cont = 0;
+                        }
+                        @foreach (var item in Model.Slider)
+                        {
+                            @if (item.Estado == true)
+                            {
+                                var itemDinamico = cont++ == 0 ? " active" : "";
+                                <div class="carousel-item @itemDinamico">
+                                    <img src="@Url.Content(item.UrlImagen)" class="d-block w-100" alt="@Html.Raw(item.Nombre)" style="object-fit: cover; height: 70vh;">
+                                    <div class="carousel-caption text-center">
+@*                                         <h1 class="text-white" style="font-size: 2.5rem;">@Html.Raw(item.Nombre)</h1>
+ *@                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
     }
- 
 
+
+
+    @if (User.IsInRole(CNT.Admin) || User.IsInRole(CNT.Usuario))
+    {
+        <div class="container">
+            @if (Model.ListaArticulos != null && Model.ListaArticulos.Any())
+            {
+                <hr />
+                <div class="row">
+                    @foreach (var articulo in Model.ListaArticulos.OrderBy(o => o.Id))
+                    {
+                        <div class="col-md-4 col-sm-6">
+                            <div class="card border-dark mb-3" style="max-width: 60rem;">
+                                <img src="~/imagenes/Img_necesarias/comunicado.png" class="img-thumbnail" alt="Artículo Image" style="width: 100%; height: auto;">
+                                <div class="card-body">
+                                    <h5 class="text-center">@articulo.Nombre</h5>
+                                    <a asp-action="AbrirPdf" asp-controller="Home" asp-route-id="@articulo.Id" target="_blank" class="btn btn-outline-primary" style="border-radius:2px">
+                                        Más información
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <p>No hay artículos</p>
+            }
+        </div>
+    }

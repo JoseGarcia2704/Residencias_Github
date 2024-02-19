@@ -47,7 +47,6 @@ namespace BlogCore.AccesoDatos.Data.Repository
             objetoDesdeDb.fechaProximaPago = proveedor.fechaProximaPago;
             objetoDesdeDb.fechaFactura = proveedor.fechaFactura;
             objetoDesdeDb.idComplementoFK = proveedor.idComplementoFK;
-            objetoDesdeDb.idUsuarioFK = proveedor.idUsuarioFK;
            // _db.SaveChanges();
         }
 

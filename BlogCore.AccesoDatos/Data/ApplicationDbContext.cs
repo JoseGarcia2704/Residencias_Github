@@ -14,9 +14,10 @@ namespace BlogCore.Data
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<Articulo> Articulo {  get; set; }
         public DbSet<Proveedor> Proveedor { get; set;}
-        public DbSet<rolUsuario> RolUsuario { get; set; }
         public DbSet<Complemento> Complemento { get; set; }
         public DbSet<Slider> Slider { get; set; }
+
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
 
     }
 }

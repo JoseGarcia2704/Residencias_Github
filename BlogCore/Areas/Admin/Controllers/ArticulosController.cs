@@ -1,11 +1,14 @@
 ﻿using BlogCore.AccesoDatos.Data.Repository.IRepository;
 using BlogCore.Data;
 using BlogCore.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace BlogCore.Areas.Admin.Controllers
 {
+
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class ArticulosController : Controller
     {
@@ -24,28 +27,7 @@ namespace BlogCore.Areas.Admin.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult AbrirPdf(int id)
-        {
-            var articulo = _contenedorTrabajo.Articulo.Get(id);
-
-            if (articulo == null)
-            {
-                return NotFound(); // O manejar de acuerdo a tus necesidades
-            }
-
-            var rutaPdf = Path.Combine(_hostingEnvironment.WebRootPath, articulo.UrlImagen.TrimStart('\\'));
-
-            if (!System.IO.File.Exists(rutaPdf))
-            {
-                return NotFound(); // O manejar de acuerdo a tus necesidades
-            }
-
-            byte[] fileBytes = System.IO.File.ReadAllBytes(rutaPdf);
-            string fileName = "Anuncio.pdf";
-
-            return File(fileBytes, "application/pdf", fileName);
-        }
+        
 
 
 
