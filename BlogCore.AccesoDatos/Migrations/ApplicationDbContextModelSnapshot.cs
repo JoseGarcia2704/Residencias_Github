@@ -30,11 +30,7 @@ namespace BlogCore.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoriaId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Descripcion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FechaCreacion")
@@ -47,31 +43,12 @@ namespace BlogCore.Data.Migrations
                     b.Property<string>("UrlImagen")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoriaId");
-
-                    b.ToTable("Articulo");
-                });
-
-            modelBuilder.Entity("BlogCore.Models.Categoria", b =>
-                {
-                    b.Property<int>("IdCategoria")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCategoria"));
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
+                    b.Property<string>("UrlPDf")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Orden")
-                        .HasColumnType("int");
+                    b.HasKey("Id");
 
-                    b.HasKey("IdCategoria");
-
-                    b.ToTable("Categoria");
+                    b.ToTable("Articulo");
                 });
 
             modelBuilder.Entity("BlogCore.Models.Complemento", b =>
@@ -416,17 +393,6 @@ namespace BlogCore.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
-                });
-
-            modelBuilder.Entity("BlogCore.Models.Articulo", b =>
-                {
-                    b.HasOne("BlogCore.Models.Categoria", "Categoria")
-                        .WithMany()
-                        .HasForeignKey("CategoriaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Categoria");
                 });
 
             modelBuilder.Entity("BlogCore.Models.Proveedor", b =>

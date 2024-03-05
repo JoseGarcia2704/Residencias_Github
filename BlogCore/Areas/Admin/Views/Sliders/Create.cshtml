@@ -1,7 +1,7 @@
 ﻿@model BlogCore.Models.Slider
 
 @{
-    ViewData["Title"] = "Crear Slider";
+    ViewData["Title"] = "Imagen del carrusel";
 
 }
 <style>
@@ -12,7 +12,7 @@
 <br />
 <br />
 
-<h2 class="text-center">Crear un nuevo Slider</h2>
+<h2 class="text-center">Crear nueva imagen del carrusel</h2>
 <br />
 
 
@@ -23,11 +23,11 @@
             <div class="form-group row">
                 <div class="col-4">
                     <label class="col-4">
-                        <label asp-for="Nombre"></label>
+                        <label>Nombre de la imagen </label>
                     </label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Nombre" class="form-control form-border" placeholder="Ingrese el slider" />
+                    <input asp-for="Nombre" class="form-control form-border" placeholder="Ingrese el titulo de la imagen" />
                     <span asp-validation-for="Nombre" class="text-danger"></span>
                 </div>
             </div>
@@ -35,7 +35,7 @@
             <div class="form-group row">
                 <div class="col-4">
                     <label class="col-4">
-                        <label asp-for="Estado"></label>
+                        <label> Activo</label>
                     </label>
                 </div>
                 <div class="col-8">
@@ -53,7 +53,7 @@
                     </label>
                 </div>
                 <div class="col-8">
-                    <input type="file" name="archivos" id="subidaArchivos" class="form-control" />
+                    <input type="file" name="archivos" id="subidaArchivos" class="form-control" accept="image/png, image/jpeg" />
                     <span asp-validation-for="UrlImagen" class="text-danger"></span>
                 </div>
 

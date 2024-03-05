@@ -1,13 +1,24 @@
 ﻿@model BlogCore.Models.ViewModels.HomeVM
 @using BlogCore.Utilidades
 
-<div class="container">
-    <div class="row fondoTitulo mt-1">
-        <div class="col-sm-12">
-            <h2 class="text-center text-black py-1">Portal de Proveedores</h2>
-        </div>
-    </div>
 
+<div class="container">
+    @if (!(User.IsInRole(CNT.Admin) || User.IsInRole(CNT.Usuario)))
+        {
+            <div class="row fondoTitulo mt-1">
+                <div class="col-sm-12">
+                    <h2 class="text-center text-black py-1">Portal de Proveedores</h2>
+                </div>
+            </div>
+         }
+    @if ((User.IsInRole(CNT.Admin) || User.IsInRole(CNT.Usuario)))
+    {
+        <div class="row fondoTitulo mt-1">
+            <div class="col-sm-12">
+                <h2 class="text-center text-black py-1">Anuncios importantes</h2>
+            </div>
+        </div>
+    }
 
     @if (!(User.IsInRole(CNT.Admin) || User.IsInRole(CNT.Usuario)))
     {
@@ -24,7 +35,7 @@
                             {
                                 var itemDinamico = cont++ == 0 ? " active" : "";
                                 <div class="carousel-item @itemDinamico">
-                                    <img src="@Url.Content(item.UrlImagen)" class="d-block w-100" alt="@Html.Raw(item.Nombre)" style="object-fit: cover; height: 70vh;">
+                                    <img src="@Url.Content(item.UrlImagen)" class="d-block w-100 rounded" alt="@Html.Raw(item.Nombre)" style="object-fit: cover; height: 70vh;">
                                     <div class="carousel-caption text-center">
 @*                                         <h1 class="text-white" style="font-size: 2.5rem;">@Html.Raw(item.Nombre)</h1>
  *@                                    </div>
@@ -43,6 +54,8 @@
                 </div>
             </div>
         </div>
+        <br />
+        <br />
     }
 
 
@@ -58,11 +71,11 @@
                     {
                         <div class="col-md-4 col-sm-6">
                             <div class="card border-dark mb-3" style="max-width: 60rem;">
-                                <img src="~/imagenes/Img_necesarias/comunicado.png" class="img-thumbnail" alt="Artículo Image" style="width: 100%; height: auto;">
-                                <div class="card-body">
-                                    <h5 class="text-center">@articulo.Nombre</h5>
-                                    <a asp-action="AbrirPdf" asp-controller="Home" asp-route-id="@articulo.Id" target="_blank" class="btn btn-outline-primary" style="border-radius:2px">
-                                        Más información
+                                <div class="card-body text-center">
+                                    <h5>@articulo.Nombre</h5>
+                                    <img src="@Url.Content(articulo.UrlImagen)" class="img-thumbnail" alt="Artículo Image" style="width: 100%;">
+                                    <a asp-action="AbrirPdf" asp-controller="Home" asp-route-id="@articulo.Id" target="_blank" class="btn btn-outline-primary" style="border-radius:2px; margin-top: 10px;">
+                                        Abrir Anuncio
                                     </a>
                                 </div>
                             </div>
@@ -72,7 +85,9 @@
             }
             else
             {
-                <p>No hay artículos</p>
+                <p>No hay anuncios</p>
             }
         </div>
     }
+
+

@@ -28,7 +28,7 @@ namespace BlogCore.AccesoDatos.Data.Repository
             objetoDesdeDb.Nombre=articulo.Nombre;
             objetoDesdeDb.Descripcion = articulo.Descripcion;
             objetoDesdeDb.UrlImagen=articulo.UrlImagen;
-            objetoDesdeDb.CategoriaId=articulo.CategoriaId;
+            objetoDesdeDb.UrlPDf=articulo.UrlPDf;
            // _db.SaveChanges();
         }
 

@@ -9,7 +9,6 @@ namespace BlogCore.AccesoDatos.Data.Repository.IRepository
     public interface IContenedorTrabajo :IDisposable
     {
         //aqui se debe de ir agregando los diferentes repositorios
-        ICategoriaRepository Categoria {  get; }
         IArticuloRepository Articulo { get; }
         
         IProveedorRepository Proveedor { get; }

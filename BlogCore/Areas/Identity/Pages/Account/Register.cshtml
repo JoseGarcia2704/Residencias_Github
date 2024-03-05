@@ -40,8 +40,8 @@
                 <label asp-for="Input.ConfirmPassword">Confirm Password</label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            @if (User.IsInRole(CNT.Admin) || User.IsInRole(CNT.Usuario))
-                 {
+            @* @if (User.IsInRole(CNT.Admin) || User.IsInRole(CNT.Usuario))
+                 { *@
             <!-- selector de roles-->
             <div class="form-group row">
                 <div class="col-6"><h4>Seleccionar rol de usuario</h4></div>
@@ -51,7 +51,7 @@
 
                     </div>
                 </div>
-                  }
+                  @* } *@
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Registro</button>
         </form>
     </div>
@@ -89,4 +89,21 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#registerForm').submit(function(event) {
+                var password = $('#Input_Password').val();
+                if (!validatePassword(password)) {
+                    event.preventDefault();
+                    alert('La contraseña debe tener al menos 8 caracteres, una letra mayúscula y un signo especial (+-.*!/)');
+                }
+            });
+
+            function validatePassword(password) {
+                var regex = /^(?=.*[A-Z])(?=.*[\+\-\.\*!\/])(?=.*\d)[A-Za-z\d\+\-\.\*!\/]{8,}$/;
+                return regex.test(password);
+            }
+        });
+    </script>
 }

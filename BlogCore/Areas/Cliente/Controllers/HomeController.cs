@@ -35,6 +35,7 @@ namespace BlogCore.Areas.Cliente.Controllers
 
             return View(homeVM);
         }
+
         [HttpGet]
         public IActionResult AbrirPdf(int id)
         {
@@ -45,7 +46,7 @@ namespace BlogCore.Areas.Cliente.Controllers
                 return NotFound(); // O manejar de acuerdo a tus necesidades
             }
 
-            var rutaPdf = Path.Combine(_hostingEnvironment.WebRootPath, articulo.UrlImagen.TrimStart('\\'));
+            var rutaPdf = Path.Combine(_hostingEnvironment.WebRootPath, articulo.UrlPDf.TrimStart('\\'));
 
             if (!System.IO.File.Exists(rutaPdf))
             {
@@ -59,7 +60,7 @@ namespace BlogCore.Areas.Cliente.Controllers
             var contentDisposition = new System.Net.Mime.ContentDisposition
             {
                 FileName = fileName,
-                Inline = false,  // Abrir en otra pestaña
+                Inline = true,  // Abrir en otra pestaña
             };
 
             Response.Headers.Add("Content-Disposition", contentDisposition.ToString());

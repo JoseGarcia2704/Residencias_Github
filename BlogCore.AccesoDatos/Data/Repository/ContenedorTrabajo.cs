@@ -16,7 +16,6 @@ namespace BlogCore.AccesoDatos.Data.Repository
         public ContenedorTrabajo(ApplicationDbContext db)
         {
             _db = db;
-            Categoria = new CategoriaRepository(_db);
             Articulo =new ArticuloRepository(_db);
             Proveedor =new ProveedorRepository(_db);
             Complemento =new ComplementoRepository(_db);
@@ -24,7 +23,6 @@ namespace BlogCore.AccesoDatos.Data.Repository
             Usuario = new UsuarioRepository(_db);
 
         }
-        public ICategoriaRepository Categoria { get; private set; }
         public IArticuloRepository Articulo { get; private set; }
         public IProveedorRepository Proveedor { get; private set; }
 

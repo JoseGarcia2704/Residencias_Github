@@ -13,7 +13,7 @@
 <br />
 <br />
 
-<h2 class="text-center">Editar un articulo</h2>
+<h2 class="text-center">Editar un Anuncio</h2>
 <br />
 
 
@@ -38,7 +38,7 @@
 
 
             <br />
-            <div class="form-group row">
+            @* <div class="form-group row">
                 <div class="col-4">
                     <label class="col-4">
                         <label asp-for="Articulo.Descripcion"></label>
@@ -50,20 +50,9 @@
                 </div>
 
             </div>
-            <br />
+            <br /> *@
 
-            <div class="form-group row mt-2">
-                <div class="col-4">
-                    <label class="col-4">
-                        <label asp-for="Articulo.CategoriaId">Categoria</label>
-                    </label>
-                </div>
-                <div class="col-8">
-                    @Html.DropDownListFor(m => m.Articulo.CategoriaId,Model.ListaCategorias,"Por favor seleccione una categoria",
-                    new {@class="form-control"})
-                </div>
-
-            </div>
+            
             <br />
 
             <div class="form-group row">
@@ -73,10 +62,21 @@
                     </label>
                 </div>
                 <div class="col-8">
-                    <input type="file" name="archivos" id="subidaArchivos" class="form-control" />
+                    <input type="file" name="archivos" id="subidaArchivos" class="form-control" accept="image/png, image/jpeg" />
 
                 </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="col-4">
+                        <label asp-for="Articulo.UrlPDf"></label>
+                    </label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="archivos" id="subidaArchivos" class="form-control" accept="application/pdf" />
 
+                </div>
             </div>
 
             <br />
@@ -91,9 +91,8 @@
 
         </div>
         <div class="col-4 pt-3">
-@*             <img src="@Model.Articulo.UrlImagen" width="100%" style="border-radius:5px; border:1px solid#bbb"/>
-            *@            
-            <img src="~/imagenes/Img_necesarias/Anuncios.jpeg" width="100%" style="border-radius:5px; border:1px solid#bbb" />
+            <img src="@Url.Content("~/" + Model.Articulo.UrlImagen.Replace("\\", "/"))" width="100%" style="border-radius:5px; border:1px solid #bbb" />
+
 
         </div>
     </div>

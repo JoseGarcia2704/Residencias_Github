@@ -13,8 +13,8 @@ function cargarDatatable() {
             "datatype": "json"
         },
         "columns": [
-            { "data": "idSlider", "width": "5%" },
-            { "data": "nombre", "width": "25%" },
+            { "data": "idSlider", "width": "10%" },
+            { "data": "nombre", "width": "45%" },
             /*EMPIEZA EDICION ESTADO*/
             {
                 "data": "estado",
@@ -32,16 +32,16 @@ function cargarDatatable() {
                 "data": "idSlider",
                 "render": function (data) {
                     return `<div class="text-center">
-                                <a href="/Admin/Sliders/Edit/${data}" class="btn btn-success text-white" style="cursor:pointer; width:100px;">
+                                <a href="/Admin/Sliders/Edit/${data}" class="btn btn-outline-primary" style="cursor:pointer; width:100px;">
                                 <i class="far fa-edit"></i>Editar
                                 </a>
                                 &nbsp;
-                                <a onclick=Delete("/Admin/Sliders/Delete/${data}") class="btn btn-danger text-white" style="cursor:pointer; width:100px;">
+                                <a onclick=Delete("/Admin/Sliders/Delete/${data}") class="btn btn-outline-primary" style="cursor:pointer; width:100px;">
                                 <i class="far fa-trash-alt"></i>Borrar
                                 </a>
                             </div>
                             `;
-                }, "width": "30%"
+                }, "width": "20%"
             }
         ],
         "language": {

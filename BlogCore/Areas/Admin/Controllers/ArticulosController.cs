@@ -29,18 +29,12 @@ namespace BlogCore.Areas.Admin.Controllers
 
         
 
-
-
-
-
-
         [HttpGet]
         public IActionResult Create()
         {
             ArticuloVM artivm = new ArticuloVM()
             {
                 Articulo = new BlogCore.Models.Articulo(),
-                 ListaCategorias = _contenedorTrabajo.Categoria.GetListaCategorias()
                  
             };
             return View(artivm);
@@ -57,31 +51,51 @@ namespace BlogCore.Areas.Admin.Controllers
                 if (artiVM.Articulo.Id == 0)
                 {
                     //Nuevo Articulo
-                    String nombreArchivo = Guid.NewGuid().ToString();
-                    var subidas = Path.Combine(rutaPrincipal, @"Documentos\Anuncios");
-                    var extension = Path.GetExtension(archivos[0].FileName);
-
-                    if (extension != ".pdf" )
+                    if (archivos.Count != 2)
                     {
-                        ModelState.AddModelError(string.Empty, "Solo se permiten archivos con extensión .pdf");
-                        artiVM.ListaCategorias = _contenedorTrabajo.Categoria.GetListaCategorias();
+                        ModelState.AddModelError(string.Empty, "Se requieren dos archivos de imagen.");
                         return View(artiVM);
                     }
 
-                    using (var fileStreams = new FileStream(Path.Combine(subidas, nombreArchivo + extension), FileMode.Create))
+                    var extension1 = Path.GetExtension(archivos[0].FileName);
+                    var extension2 = Path.GetExtension(archivos[1].FileName);
+
+                    if ((extension1 != ".jpg" && extension1 != ".jpeg" && extension1 != ".png") ||
+                        (extension2 != ".pdf"))
                     {
-                        archivos[0].CopyTo(fileStreams);
+                        ModelState.AddModelError(string.Empty, "El formato de archivos no corresponde");
+                        return View(artiVM);
                     }
-                    artiVM.Articulo.UrlImagen = @"Documentos\Anuncios\" + nombreArchivo + extension;
+
+                    String nombreArchivo1 = DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-fff");
+                    String nombreArchivo2 = DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-fff");
+
+
+                    var subida1 = Path.Combine(rutaPrincipal, @"Documentos\Anuncios", nombreArchivo1 + extension1);
+                    var subida2 = Path.Combine(rutaPrincipal, @"Documentos\Anuncios", nombreArchivo2 + extension2);
+
+                    using (var fileStream1 = new FileStream(subida1, FileMode.Create))
+                    {
+                        archivos[0].CopyTo(fileStream1);
+                    }
+
+                    using (var fileStream2 = new FileStream(subida2, FileMode.Create))
+                    {
+                        archivos[1].CopyTo(fileStream2);
+                    }
+
+                    artiVM.Articulo.UrlImagen = @"Documentos\Anuncios\" + nombreArchivo1 + extension1;
+                    artiVM.Articulo.UrlPDf= @"Documentos\Anuncios\" + nombreArchivo2 + extension2;
+                    artiVM.Articulo.Descripcion = "NA";
                     artiVM.Articulo.FechaCreacion = DateTime.Now.ToString();
                     _contenedorTrabajo.Articulo.add(artiVM.Articulo);
                     _contenedorTrabajo.Save();
                     return RedirectToAction(nameof(Index));
                 }
             }
-            artiVM.ListaCategorias = _contenedorTrabajo.Categoria.GetListaCategorias();
             return View(artiVM);
         }
+
 
 
         [HttpGet]
@@ -90,7 +104,6 @@ namespace BlogCore.Areas.Admin.Controllers
             ArticuloVM artivm = new ArticuloVM()
             {
                 Articulo = new BlogCore.Models.Articulo(),
-                ListaCategorias = _contenedorTrabajo.Categoria.GetListaCategorias()
 
             };
             if (id != null)
@@ -101,6 +114,8 @@ namespace BlogCore.Areas.Admin.Controllers
         }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(ArticuloVM artiVM)
         {
             if (ModelState.IsValid)
@@ -110,46 +125,59 @@ namespace BlogCore.Areas.Admin.Controllers
 
                 var articuloDesdeDb = _contenedorTrabajo.Articulo.Get(artiVM.Articulo.Id);
 
-                if (archivos.Count() > 0)
+                if (archivos.Count == 2)
                 {
-                    // Nueva imagen para el artículo
-                    string nombreArchivo = Guid.NewGuid().ToString();
-                    var subidas = Path.Combine(rutaPrincipal, @"Documentos\Anuncios");
-                    var extension = Path.GetExtension(archivos[0].FileName);
+                    var extension1 = Path.GetExtension(archivos[0].FileName);
+                    var extension2 = Path.GetExtension(archivos[1].FileName);
 
-                    if (extension != ".pdf")
+                    if ((extension1 != ".jpg" && extension1 != ".jpeg" && extension1 != ".png") ||
+                        (extension2 != ".pdf"))
                     {
-                        ModelState.AddModelError(string.Empty, "Solo se permiten archivos con extensión .pdf");
-                        artiVM.ListaCategorias = _contenedorTrabajo.Categoria.GetListaCategorias();
+                        ModelState.AddModelError(string.Empty, "No coinciden el formato de los archivos");
                         return View(artiVM);
                     }
 
-                    var rutaImagen = Path.Combine(rutaPrincipal, articuloDesdeDb.UrlImagen.TrimStart('\\'));
+                    String nombreArchivo1 = DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-fff");
+                    String nombreArchivo2 = DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-fff");
 
-                    if (System.IO.File.Exists(rutaImagen))
+                    var subida1 = Path.Combine(rutaPrincipal, @"Documentos\Anuncios", nombreArchivo1 + extension1);
+                    var subida2 = Path.Combine(rutaPrincipal, @"Documentos\Anuncios", nombreArchivo2 + extension2);
+
+                    using (var fileStream1 = new FileStream(subida1, FileMode.Create))
                     {
-                        System.IO.File.Delete(rutaImagen);
+                        archivos[0].CopyTo(fileStream1);
                     }
 
-                    // Nuevamente subir el archivo
-                    using (var fileStreams = new FileStream(Path.Combine(subidas, nombreArchivo + extension), FileMode.Create))
+                    using (var fileStream2 = new FileStream(subida2, FileMode.Create))
                     {
-                        archivos[0].CopyTo(fileStreams);
+                        archivos[1].CopyTo(fileStream2);
                     }
 
-                    artiVM.Articulo.UrlImagen = Path.Combine("Documentos", "Anuncios", nombreArchivo + extension);
-                    artiVM.Articulo.FechaCreacion = DateTime.Now.ToString();
+                    string rutaImagenAntigua = Path.Combine(rutaPrincipal, articuloDesdeDb.UrlImagen.TrimStart('\\'));
+                    string rutaPdfAntiguo = Path.Combine(rutaPrincipal, articuloDesdeDb.UrlPDf.TrimStart('\\'));
 
-                    _contenedorTrabajo.Articulo.Update(artiVM.Articulo);
-                    _contenedorTrabajo.Save();
-                    return RedirectToAction(nameof(Index));
+                    if (System.IO.File.Exists(rutaImagenAntigua))
+                    {
+                        System.IO.File.Delete(rutaImagenAntigua);
+                    }
+
+                    if (System.IO.File.Exists(rutaPdfAntiguo))
+                    {
+                        System.IO.File.Delete(rutaPdfAntiguo);
+                    }
+
+                    artiVM.Articulo.UrlImagen = @"Documentos\Anuncios\" + nombreArchivo1 + extension1;
+                    artiVM.Articulo.UrlPDf = @"Documentos\Anuncios\" + nombreArchivo2 + extension2;
                 }
                 else
                 {
-                    // Aquí sería cuando la imagen ya existe y se conserva
+                    // Mantener las URL existentes si no se suben archivos nuevos
                     artiVM.Articulo.UrlImagen = articuloDesdeDb.UrlImagen;
+                    artiVM.Articulo.UrlPDf = articuloDesdeDb.UrlPDf;
                 }
 
+                artiVM.Articulo.FechaCreacion = DateTime.Now.ToString();
+                artiVM.Articulo.Descripcion = "NA";
                 _contenedorTrabajo.Articulo.Update(artiVM.Articulo);
                 _contenedorTrabajo.Save();
                 return RedirectToAction(nameof(Index));
@@ -159,11 +187,13 @@ namespace BlogCore.Areas.Admin.Controllers
         }
 
 
+
+
         #region 
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Json(new { data = _contenedorTrabajo.Articulo.GetAll(includeProperties: "Categoria") });
+            return Json(new { data = _contenedorTrabajo.Articulo.GetAll() });
         }
         [HttpDelete]
         public IActionResult Delete(int id)
@@ -171,9 +201,13 @@ namespace BlogCore.Areas.Admin.Controllers
             var articuloDesdeDb= _contenedorTrabajo.Articulo.Get(id);
             string rutaDirectorioPrincipal = _hostingEnvironment.WebRootPath;
             var rutaImagen = Path.Combine(rutaDirectorioPrincipal, articuloDesdeDb.UrlImagen.TrimStart('\\'));
+            var rutaPdf= Path.Combine(rutaDirectorioPrincipal,articuloDesdeDb.UrlPDf.TrimStart('\\'));
             if (System.IO.File.Exists(rutaImagen))
+            {                System.IO.File.Delete(rutaImagen);
+            }
+            if (System.IO.File.Exists(rutaPdf))
             {
-                System.IO.File.Delete(rutaImagen);
+                System.IO.File.Delete(rutaPdf);
             }
             if (articuloDesdeDb == null)
             {

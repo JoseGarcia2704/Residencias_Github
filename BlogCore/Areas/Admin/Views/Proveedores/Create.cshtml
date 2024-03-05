@@ -1,8 +1,9 @@
 ﻿@model BlogCore.Models.ViewModels.ProveedorVM
+@using BlogCore.Utilidades
 
 
 @{
-    ViewData["Title"] = "Crear una Nueva linea";
+    ViewData["Title"] = "Subir Factura_Complemento";
 
 }
 <style>
@@ -14,31 +15,31 @@
 <br />
 <br />
 
-<h2 class="text-center">Crear una Nueva linea</h2>
+<h2 class="text-center">Subir nueva factura o complemento</h2>
 <br />
 
 
 <form method="POST" asp-action="Create" enctype="multipart/form-data">
     <div class="row px-2 offset-1 border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="col-10 offset-1 mt-4">
+        <div class="col-8 offset-1 mt-6">
 
 
-
+            <br />
             <div class="form-group row">
-                <div class="col-4">
+                <div class="col-6">
                     <label class="col-4">
-                        <label asp-for="Proveedor.OrdenCompra"></label>
+                        <label>Orden de compra</label>
                     </label>
                 </div>
-                <div class="col-8">
+                <div class="col-6">
                     <input asp-for="Proveedor.OrdenCompra" class="form-control form-border" placeholder="Ingrese la orden de compra" />
                     <span asp-validation-for="Proveedor.OrdenCompra" class="text-danger"></span>
                 </div>
             </div>
             <br />
 
-            <div class="form-group row">
+            @* <div class="form-group row">
                 <div class="col-4">
                     <label class="col-4">
                         <label asp-for="Proveedor.statusComplemento"></label>
@@ -49,7 +50,7 @@
                     <span asp-validation-for="Proveedor.statusComplemento" class="text-danger"></span>
                 </div>
             </div>
-            <br />
+            <br /> *@
 
          @*    <div class="form-group row">
             <div class="col-4">
@@ -78,36 +79,6 @@
             </div>
             <br />
  *@
-
-            <div class="form-group row">
-                <div class="col-4">
-                    <label class="col-4">
-                        <label asp-for="Proveedor.Notas"></label>
-                    </label>
-                </div>
-                <div class="col-8">
-                    <input asp-for="Proveedor.Notas" class="form-control form-border" placeholder="Ingrese las notas" />
-                    <span asp-validation-for="Proveedor.Notas" class="text-danger"></span>
-                </div>
-            </div>
-            <br />
-
-            <div class="form-group row">
-            <div class="col-4">
-                <label class="col-4">
-                    <label asp-for="Proveedor.Estatus"></label>
-                </label>
-            </div>
-            <div class="col-8">
-                <input asp-for="Proveedor.Estatus" class="form-control form-border" placeholder="Ingrese el status" />
-                <span asp-validation-for="Proveedor.Estatus" class="text-danger"></span>
-            </div>
-        </div>
-        <br />
-
-           
-            
-
             @* <div class="form-group row">
             <div class="col-4">
                 <label class="col-4">
@@ -123,25 +94,25 @@
 
 
             <div class="form-group row">
-                <div class="col-4">
+                <div class="col-6">
                     <label class="col-4">
                         <label asp-for="Proveedor.XmlUrl"></label>
                     </label>
                 </div>
-                <div class="col-8">
-                    <input type="file" name="archivosXml" id="subidaArchivosXml" class="form-control" />
+                <div class="col-6">
+                    <input type="file" name="archivosXml" id="subidaArchivosXml" class="form-control" accept="application/xml" />
 
                 </div>
             </div>
             <br />
             <div class="form-group row">
-                <div class="col-4">
+                <div class="col-6">
                     <label class="col-4">
                         <label asp-for="Proveedor.PdfUrl"></label>
                     </label>
                 </div>
-                <div class="col-8">
-                    <input type="file" name="archivosPdf" id="subidaArchivosPdf" class="form-control" />
+                <div class="col-6">
+                    <input type="file" name="archivosPdf" id="subidaArchivosPdf" class="form-control" accept="application/pdf" />
 
                 </div>
             </div>
@@ -160,7 +131,7 @@
             </div>
             <br />
  *@
-            <div class="form-group row">
+            @* <div class="form-group row">
                 <div class="col-4">
                     <label class="col-4">
                         <label asp-for="Proveedor.Solicitante"></label>
@@ -171,22 +142,38 @@
                     <span asp-validation-for="Proveedor.Solicitante" class="text-danger"></span>
                 </div>
             </div>
-            <br />
-
-            <div class="form-group row">
-                <div class="col-4">
-                    <label class="col-4">
-                        <label asp-for="Proveedor.comentariosSeguimiento"> Comentarios de seguimiento</label>
-                    </label>
+            <br /> *@
+            @if (User.IsInRole(CNT.Admin))
+            {
+                <div class="form-group row">
+                    <div class="col-6">
+                        <label class="col-4">
+                            <label> Comentarios de seguimiento</label>
+                        </label>
+                    </div>
+                    <div class="col-6">
+                        <input asp-for="Proveedor.comentariosSeguimiento" class="form-control form-border" placeholder="Ingrese los comentarios de seguimiento" />
+                        <span asp-validation-for="Proveedor.comentariosSeguimiento" class="text-danger"></span>
+                    </div>
                 </div>
-                <div class="col-8">
-                    <input asp-for="Proveedor.comentariosSeguimiento" class="form-control form-border" placeholder="Ingrese los comentarios de seguimiento" />
-                    <span asp-validation-for="Proveedor.comentariosSeguimiento" class="text-danger"></span>
+                <br />
+            }
+            @if (User.IsInRole(CNT.Usuario))
+            {
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label class="col-4">
+                            <label asp-for="Proveedor.Notas"></label>
+                        </label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Proveedor.Notas" class="form-control form-border" placeholder="Ingrese las notas" />
+                        <span asp-validation-for="Proveedor.Notas" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
-            <br />
-
-            <div class="form-group row">
+                <br />
+            }
+            @* <div class="form-group row">
                 <div class="col-4">
                     <label class="col-4">
                         <label asp-for="Proveedor.nombreProveedor"></label>
@@ -197,7 +184,7 @@
                     <span asp-validation-for="Proveedor.nombreProveedor" class="text-danger"></span>
                 </div>
             </div>
-            <br />
+            <br /> *@
 
            @*  <div class="form-group row">
                 <div class="col-4">
@@ -227,7 +214,7 @@
             <br />
             <br />
             <div class="form-group row">
-                <div class="col-8">
+                <div class="col-4">
                     <partial name="_VistaCrearVolver" />
                 </div>
             </div>

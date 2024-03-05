@@ -32,17 +32,17 @@ function cargarDatatable() {
                 "render": function (data) {
                     return `<div class="text-center">
 
-                         <a href="/Admin/Proveedores/Edit/${data}" class="btn btn-success text-white" style="cursor:pointer;width:60px;font-size: 12px; text-align: left;">
+                         <a href="/Admin/Proveedores/Edit/${data}" class="w-100 btn btn-lg btn-outline-primary" style="cursor:pointer;width:60px;font-size: 12px; text-align: left;">
                          <i class="far fa-edit"></i>Editar
                          </a>
                          &nbsp;
-                          <a onclick=Delete("/Admin/Proveedores/Delete/${data}") class="btn btn-danger text-white" style="cursor:pointer; width:60px; font-size: 12px; text-align: left;">
+                          <a onclick=Delete("/Admin/Proveedores/Delete/${data}") class="w-100 btn btn-lg btn-outline-primary" style="cursor:pointer; width:60px; font-size: 12px; text-align: left;">
                                 <i class="far fa-trash-alt"></i>Borrar
                                 </a>
 
                     </div>
                     `;
-                },"width":"25%"
+                },"width":"5%"
             }
 
         ],

@@ -17,7 +17,6 @@ namespace BlogCore.Models
         [Display(Name = "Nombre del Articulo")]
         public String Nombre { get; set; }
 
-        [Required(ErrorMessage = "La descripcion es obligatoria")]
         public string Descripcion { get; set; }
 
         [Display(Name ="Fecha de creacion")]
@@ -28,10 +27,11 @@ namespace BlogCore.Models
         [Display(Name = "Imagen")]
         public string UrlImagen { get; set; }
 
-        [Required]
-        public int CategoriaId { get; set; }
 
-        [ForeignKey("CategoriaId")]
-        public Categoria Categoria { get; set; }
+        [DataType(DataType.ImageUrl)]
+        [Display(Name = "Pdf")]
+        public string UrlPDf { get; set; }
+
+
     }
 }

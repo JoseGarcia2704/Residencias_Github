@@ -83,8 +83,8 @@ namespace BlogCore.Areas.Admin.Controllers
             {
                 return NotFound(); // O manejar de acuerdo a tus necesidades
             }
+
             var rutaPdf = _hostingEnvironment.WebRootPath + "\\" + complemento.PdfUrl.TrimStart('\\');
-            //var rutaPdf = Path.Combine(_hostingEnvironment.WebRootPath, complemento.PdfUrl.TrimStart('\\'));
 
             if (!System.IO.File.Exists(rutaPdf))
             {
@@ -93,18 +93,17 @@ namespace BlogCore.Areas.Admin.Controllers
 
             byte[] fileBytes = System.IO.File.ReadAllBytes(rutaPdf);
             string fileName = "Complemento.pdf";
-
-            // Cambiar el ContentDisposition para abrir en otra pestaña
-            var contentDisposition = new ContentDisposition
+            var contentDisposition = new System.Net.Mime.ContentDisposition
             {
                 FileName = fileName,
-                Inline = false,  // Cambiar a true para abrir en línea
+                Inline = true,  // Abrir en otra pestaña
             };
 
             Response.Headers.Add("Content-Disposition", contentDisposition.ToString());
 
             return File(fileBytes, "application/pdf");
         }
+
 
 
 

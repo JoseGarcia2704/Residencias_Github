@@ -5,7 +5,10 @@ using Elfie.Serialization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Net.NetworkInformation;
 using System.Xml.Linq;
+using BlogCore.Utilidades;
+
 
 namespace BlogCore.Areas.Admin.Controllers
 {
@@ -131,7 +134,21 @@ namespace BlogCore.Areas.Admin.Controllers
                         proveVM.Proveedor.Moneda = moneda;
                         proveVM.Proveedor.Folio = folio;
                         proveVM.Proveedor.Monto = total;
-                        proveVM.Proveedor.idComplementoFK = 7;
+                        proveVM.Proveedor.idComplementoFK = 1;
+                        proveVM.Proveedor.Estatus = "2";
+                        proveVM.Proveedor.statusComplemento = "NA";
+                        proveVM.Proveedor.Solicitante = "Solicitante_Ejemplo";
+                        proveVM.Proveedor.nombreProveedor = "Proveedor_ejemplo";
+                        if (User.IsInRole(CNT.Admin))
+                        {
+                            proveVM.Proveedor.Notas = "Na";
+
+                        }
+                        if (User.IsInRole(CNT.Usuario))
+                        {
+                            proveVM.Proveedor.comentariosSeguimiento = "Na";
+
+                        }
                         proveVM.Proveedor.UUIDF = uuidf;
                         proveVM.Proveedor.metodoPago = formapago;
                         proveVM.Proveedor.FechaRegistro = DateTime.Now;
@@ -267,10 +284,9 @@ namespace BlogCore.Areas.Admin.Controllers
                 proveVM.Proveedor.XmlUrl = proveedorExistente.XmlUrl;
                 proveVM.Proveedor.metodoPago = proveedorExistente.metodoPago;
                 proveVM.Proveedor.Solicitante = proveedorExistente.Solicitante;
-                proveVM.Proveedor.comentariosSeguimiento = proveedorExistente.comentariosSeguimiento;
                 proveVM.Proveedor.nombreProveedor = proveedorExistente.nombreProveedor;
                 proveVM.Proveedor.Moneda = proveedorExistente.Moneda;
-               proveVM.Proveedor.idComplementoFK= proveedorExistente.idComplementoFK;
+                proveVM.Proveedor.idComplementoFK= proveedorExistente.idComplementoFK;
 
 
                 // Actualizar otras propiedades del proveedor

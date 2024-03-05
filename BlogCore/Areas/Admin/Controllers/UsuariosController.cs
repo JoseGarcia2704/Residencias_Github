@@ -31,7 +31,11 @@ namespace BlogCore.Areas.Admin.Controllers
                 // Verificar si usuarioActual no es nulo antes de acceder a su propiedad Value
                 if (usuarioActual != null)
                 {
+                    //mostrar todos los usuarios menos el de la sesion iniciado
                     return View(_contenedorTrabajo.Usuario.GetAll(u => u.Id != usuarioActual.Value));
+                    //mostrat todos los usuarios
+                    //return View(_contenedorTrabajo.Usuario.GetAll());
+
                 }
             }
 

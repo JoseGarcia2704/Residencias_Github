@@ -13,25 +13,24 @@ function cargarDatatable() {
 
         },
         "columns": [
-            { "data": "id", "width": "5%" },
-            { "data": "nombre", "width": "20%" },
-            { "data": "categoria.nombre", "width": "15%" },
-            { "data": "fechaCreacion", "width": "15%" },
+            { "data": "id", "width": "10%" },
+            { "data": "nombre", "width": "40%" },
+            { "data": "fechaCreacion", "width": "20%" },
             {
                 "data": "id",
                 "render": function (data) {
                     return `<div class="text-center">
-                         <a href="/Admin/Articulos/Edit/${data}" class="btn btn-success text-white" style="cursor:pointer;width:100px;">
+                         <a href="/Admin/Articulos/Edit/${data}" class="btn btn-outline-primary" style="cursor:pointer;width:100px;">
                          <i class="far fa-edit"></i>Editar
                          </a>
                          &nbsp;
-                          <a onclick=Delete("/Admin/Articulos/Delete/${data}") class="btn btn-danger text-white" style="cursor:pointer; width:100px;">
+                          <a onclick=Delete("/Admin/Articulos/Delete/${data}") class="btn btn-outline-primary" style="cursor:pointer; width:100px;">
                                 <i class="far fa-trash-alt"></i>Borrar
                                 </a>
 
                     </div>
                     `;
-                },"width":"30%"
+                },"width":"20%"
             }
 
         ],

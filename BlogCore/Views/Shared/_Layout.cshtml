@@ -21,9 +21,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="white">
             <div class="container-fluid">
-                <img src="~/imagenes/Img_necesarias/Logo2.png" alt="Descripción de la imagen" style="width: 80px; height: 40px; margin-right: 10px;">
+                <img src="~/imagenes/Img_necesarias/Logo2.png" alt="Celay S.A de C.V" style="width: 100px; height: 40px; margin-right: 10px;">
                 <a class="navbar-brand text-light" asp-area="Cliente" asp-controller="Home" asp-action="Index">
                     Celay S.A de C.V &nbsp;&nbsp;<i class="fa fa-building" aria-hidden="true"></i>
                 </a>
@@ -36,14 +36,13 @@
                         @if(User.IsInRole(CNT.Admin))
                         {
                             <li class="nav-item dropdown text-light">
-                                <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="text-white">Contenidos</span></a>
-                                <div class="dropdown-menu text-dark" style="background-color: #c4eee6 ;">
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Categorias" asp-action="Index">Categoria</a>
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Articulos" asp-action="Index">Anuncios</a>
+                                <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="text-white">Menu Principal</span></a>
+                                <div class="dropdown-menu text-dark" >
                                     <a class="dropdown-item" asp-area="Admin" asp-controller="Proveedores" asp-action="Index">Facturas</a>
                                     <a class="dropdown-item" asp-area="Admin" asp-controller="Complementos" asp-action="Index">Complementos</a>
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Sliders" asp-action="Index">Sliders</a>
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Usuarios" asp-action="Index">Usuarios</a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Articulos" asp-action="Index">Anuncios</a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Sliders" asp-action="Index">Carrusel</a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Usuarios" asp-action="Index">Proveedores</a>
 @*                                     <a class="dropdown-item" asp-area="Admin" asp-controller="Roles" asp-action="Index">Roles</a>
  *@                                    
 
@@ -53,9 +52,9 @@
                         @if (User.IsInRole(CNT.Usuario))
                         {
                             <li class="nav-item dropdown text-primary">
-                                <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="text-white">Contenidos</span></a>
-                                <div class="dropdown-menu text-dark" style="background-color: #c4eee6 ;">
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Proveedores" asp-action="Index">Proveedores</a>
+                                <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="text-white">Menu Principal</span></a>
+                                <div class="dropdown-menu text-dark" >
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Proveedores" asp-action="Index">Facturas</a>
                                     <a class="dropdown-item" asp-area="Admin" asp-controller="Complementos" asp-action="Index">Complementos</a>
 
                                 </div>
@@ -86,8 +85,15 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
+            <p class="text-success text-left">
+                <a href="https://www.elay.com.mx/es-mx" class="text-success" target="_blank">
+                    <img src="~/imagenes/Img_necesarias/Logomini.png" alt="Elay America" style="height: 20px; width: auto; margin-right: 5px;">
+                    Elay America
+                </a>
+            </p>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!--Plugins Frontend-->

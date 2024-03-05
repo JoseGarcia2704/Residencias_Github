@@ -2,7 +2,7 @@
 
 
 @{
-    ViewData["Title"] = "Editar linea";
+    ViewData["Title"] = "Editar Factura";
 
 }
 <style>
@@ -14,7 +14,7 @@
 <br />
 <br />
 
-<h2 class="text-center">Editar linea</h2>
+<h2 class="text-center">Editar Factura</h2>
 <br />
 
 
@@ -27,12 +27,12 @@
             <div class="form-group row">
                 <div class="col-4">
                     <label class="col-4">
-                        <label asp-for="Proveedor.Notas"></label>
+                        <label asp-for="Proveedor.comentariosSeguimiento"></label>
                     </label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Proveedor.Notas" class="form-control form-border" placeholder="Ingrese las notas" />
-                    <span asp-validation-for="Proveedor.Notas" class="text-danger"></span>
+                    <input asp-for="Proveedor.comentariosSeguimiento" class="form-control form-border" placeholder="Ingrese las notas" />
+                    <span asp-validation-for="Proveedor.comentariosSeguimiento" class="text-danger"></span>
                 </div>
             </div>
             <br />
