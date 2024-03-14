@@ -22,6 +22,9 @@ namespace BlogCore.Models
         [Display(Name = "saldoInsoluto")]
         public float saldoInsoluto { get; set; }
        
+        [Display(Name = "Rfc")]
+        public string Rfc { get; set; }
+
         [DataType(DataType.ImageUrl)]
         [Display(Name = "Pdf")]
         public string PdfUrl { get; set; }

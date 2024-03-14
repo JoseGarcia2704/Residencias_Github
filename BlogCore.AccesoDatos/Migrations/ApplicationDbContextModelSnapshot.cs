@@ -65,6 +65,9 @@ namespace BlogCore.Data.Migrations
                     b.Property<string>("PdfUrl")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Rfc")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UUIDC")
                         .HasColumnType("nvarchar(max)");
 
@@ -105,10 +108,13 @@ namespace BlogCore.Data.Migrations
                     b.Property<string>("Notas")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OrdenCompra")
-                        .HasColumnType("int");
+                    b.Property<string>("OrdenCompra")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PdfUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Rfc")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Solicitante")

@@ -5,11 +5,12 @@
 namespace BlogCore.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class CamposAdcionalesComplemento : Migration
+    public partial class CamposAdicionalesComplemento2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+
             migrationBuilder.AddColumn<string>(
                 name: "PdfUrl",
                 table: "Complemento",
@@ -27,8 +28,8 @@ namespace BlogCore.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "PdfUrl",
-                table: "Complemento");
+                            name: "PdfUrl",
+                            table: "Complemento");
 
             migrationBuilder.DropColumn(
                 name: "XmlUrl",

@@ -53,17 +53,18 @@ namespace BlogCore.Areas.Admin.Controllers
                     //Nuevo Articulo
                     if (archivos.Count != 2)
                     {
-                        ModelState.AddModelError(string.Empty, "Se requieren dos archivos de imagen.");
+                        var message = "Se requieren cargar dos archivos.";
+                        TempData["AlertMessage"] = message;
                         return View(artiVM);
                     }
 
                     var extension1 = Path.GetExtension(archivos[0].FileName);
                     var extension2 = Path.GetExtension(archivos[1].FileName);
 
-                    if ((extension1 != ".jpg" && extension1 != ".jpeg" && extension1 != ".png") ||
-                        (extension2 != ".pdf"))
+                    if ((extension1 != ".jpg" && extension1 != ".jpeg" && extension1 != ".png") || (extension2 != ".pdf"))
                     {
-                        ModelState.AddModelError(string.Empty, "El formato de archivos no corresponde");
+                        var message = "El formato de archivos no corresponde";
+                        TempData["AlertMessage"] = message;
                         return View(artiVM);
                     }
 
@@ -130,10 +131,10 @@ namespace BlogCore.Areas.Admin.Controllers
                     var extension1 = Path.GetExtension(archivos[0].FileName);
                     var extension2 = Path.GetExtension(archivos[1].FileName);
 
-                    if ((extension1 != ".jpg" && extension1 != ".jpeg" && extension1 != ".png") ||
-                        (extension2 != ".pdf"))
+                    if ((extension1 != ".jpg" && extension1 != ".jpeg" && extension1 != ".png") || (extension2 != ".pdf"))
                     {
-                        ModelState.AddModelError(string.Empty, "No coinciden el formato de los archivos");
+                        var message = "El formato de archivos no corresponde";
+                        TempData["AlertMessage"] = message;
                         return View(artiVM);
                     }
 
@@ -172,8 +173,8 @@ namespace BlogCore.Areas.Admin.Controllers
                 else
                 {
                     // Mantener las URL existentes si no se suben archivos nuevos
-                    artiVM.Articulo.UrlImagen = articuloDesdeDb.UrlImagen;
-                    artiVM.Articulo.UrlPDf = articuloDesdeDb.UrlPDf;
+                    artiVM.Articulo.UrlImagen = articuloDesdeDb.UrlImagen ?? string.Empty;
+                    artiVM.Articulo.UrlPDf = articuloDesdeDb.UrlPDf ?? string.Empty;
                 }
 
                 artiVM.Articulo.FechaCreacion = DateTime.Now.ToString();

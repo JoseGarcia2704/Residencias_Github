@@ -1,15 +1,22 @@
 ﻿@model BlogCore.Models.ViewModels.ProveedorVM
 @using BlogCore.Utilidades
 
-
 @{
     ViewData["Title"] = "Subir Factura_Complemento";
-
 }
+
 <style>
     .form-border {
         border: 1px solid #000; /* 1px de ancho y color negro */
     }
+
+    
+
+    .form-group {
+        margin-bottom: 30px;
+    }
+
+    
 </style>
 
 <br />
@@ -18,221 +25,111 @@
 <h2 class="text-center">Subir nueva factura o complemento</h2>
 <br />
 
-
 <form method="POST" asp-action="Create" enctype="multipart/form-data">
     <div class="row px-2 offset-1 border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="col-8 offset-1 mt-6">
-
-
             <br />
             <div class="form-group row">
-                <div class="col-6">
-                    <label class="col-4">
-                        <label>Orden de compra</label>
-                    </label>
+                <div class="col-4">
+                    <label>Orden de compra</label>
                 </div>
-                <div class="col-6">
+                <div class="col-8">
                     <input asp-for="Proveedor.OrdenCompra" class="form-control form-border" placeholder="Ingrese la orden de compra" />
                     <span asp-validation-for="Proveedor.OrdenCompra" class="text-danger"></span>
                 </div>
             </div>
-            <br />
-
-            @* <div class="form-group row">
-                <div class="col-4">
-                    <label class="col-4">
-                        <label asp-for="Proveedor.statusComplemento"></label>
-                    </label>
-                </div>
-                <div class="col-8">
-                    <input asp-for="Proveedor.statusComplemento" class="form-control form-border" placeholder="Ingrese el Status del complemento" />
-                    <span asp-validation-for="Proveedor.statusComplemento" class="text-danger"></span>
-                </div>
-            </div>
-            <br /> *@
-
-         @*    <div class="form-group row">
-            <div class="col-4">
-                <label class="col-4">
-                    <label asp-for="Proveedor.Folio"></label>
-                </label>
-            </div>
-            <div class="col-8">
-                <input asp-for="Proveedor.Folio" class="form-control form-border" placeholder="Ingrese el Folio" />
-                <span asp-validation-for="Proveedor.Folio" class="text-danger"></span>
-            </div>
-        </div>
-        <br /> *@
-
-
-           @*  <div class="form-group row">
-                <div class="col-4">
-                    <label class="col-4">
-                        <label asp-for="Proveedor.Monto"></label>
-                    </label>
-                </div>
-                <div class="col-8">
-                    <input asp-for="Proveedor.Monto" class="form-control form-border" placeholder="Ingrese el Monto" />
-                    <span asp-validation-for="Proveedor.Monto" class="text-danger"></span>
-                </div>
-            </div>
-            <br />
- *@
-            @* <div class="form-group row">
-            <div class="col-4">
-                <label class="col-4">
-                    <label asp-for="Proveedor.UUIDF"></label>
-                </label>
-            </div>
-            <div class="col-8">
-                <input asp-for="Proveedor.UUIDF" class="form-control form-border" placeholder="Ingrese el UUID de la factura" />
-                <span asp-validation-for="Proveedor.UUIDF" class="text-danger"></span>
-            </div>
-        </div>
-        <br /> *@
-
-
-            <div class="form-group row">
-                <div class="col-6">
-                    <label class="col-4">
-                        <label asp-for="Proveedor.XmlUrl"></label>
-                    </label>
-                </div>
-                <div class="col-6">
-                    <input type="file" name="archivosXml" id="subidaArchivosXml" class="form-control" accept="application/xml" />
-
-                </div>
-            </div>
-            <br />
-            <div class="form-group row">
-                <div class="col-6">
-                    <label class="col-4">
-                        <label asp-for="Proveedor.PdfUrl"></label>
-                    </label>
-                </div>
-                <div class="col-6">
-                    <input type="file" name="archivosPdf" id="subidaArchivosPdf" class="form-control" accept="application/pdf" />
-
-                </div>
-            </div>
-            <br />
-
-            @* <div class="form-group row">
-                <div class="col-4">
-                    <label class="col-4">
-                        <label asp-for="Proveedor.metodoPago"></label>
-                    </label>
-                </div>
-                <div class="col-8">
-                    <input asp-for="Proveedor.metodoPago" class="form-control form-border" placeholder="Ingrese el metodo de pago" />
-                    <span asp-validation-for="Proveedor.metodoPago" class="text-danger"></span>
-                </div>
-            </div>
-            <br />
- *@
-            @* <div class="form-group row">
-                <div class="col-4">
-                    <label class="col-4">
-                        <label asp-for="Proveedor.Solicitante"></label>
-                    </label>
-                </div>
-                <div class="col-8">
-                    <input asp-for="Proveedor.Solicitante" class="form-control form-border" placeholder="Ingrese el nombre del solicitante" />
-                    <span asp-validation-for="Proveedor.Solicitante" class="text-danger"></span>
-                </div>
-            </div>
-            <br /> *@
-            @if (User.IsInRole(CNT.Admin))
+           @*  @if (User.IsInRole(CNT.Admin))
             {
                 <div class="form-group row">
-                    <div class="col-6">
-                        <label class="col-4">
-                            <label> Comentarios de seguimiento</label>
-                        </label>
+                    <div class="col-4">
+                        <label>Comentarios de seguimiento</label>
                     </div>
-                    <div class="col-6">
+                    <div class="col-8">
                         <input asp-for="Proveedor.comentariosSeguimiento" class="form-control form-border" placeholder="Ingrese los comentarios de seguimiento" />
                         <span asp-validation-for="Proveedor.comentariosSeguimiento" class="text-danger"></span>
                     </div>
                 </div>
-                <br />
-            }
-            @if (User.IsInRole(CNT.Usuario))
-            {
-                <div class="form-group row">
-                    <div class="col-4">
-                        <label class="col-4">
-                            <label asp-for="Proveedor.Notas"></label>
-                        </label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="Proveedor.Notas" class="form-control form-border" placeholder="Ingrese las notas" />
-                        <span asp-validation-for="Proveedor.Notas" class="text-danger"></span>
-                    </div>
+            } *@
+            <div class="form-group row">
+                <div class="col-4">
+                    <label>PDF</label>
                 </div>
-                <br />
-            }
+                <div class="col-8">
+                    <input type="file" name="archivosPdf" id="subidaArchivosPdf" class="form-control" accept="application/pdf" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label>XML</label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="archivosXml" id="subidaArchivosXml" class="form-control" accept="application/xml" />
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-4">
+                    <label>Notas</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Proveedor.Notas" class="form-control form-border" placeholder="Ingrese las notas" />
+                    <span asp-validation-for="Proveedor.Notas" class="text-danger"></span>
+                </div>
+            </div>
             @* <div class="form-group row">
                 <div class="col-4">
-                    <label class="col-4">
-                        <label asp-for="Proveedor.nombreProveedor"></label>
-                    </label>
+                    <label>Nombre del proveedor</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="Proveedor.nombreProveedor" class="form-control form-border" placeholder="Ingrese el nombre del proveedor" />
                     <span asp-validation-for="Proveedor.nombreProveedor" class="text-danger"></span>
                 </div>
             </div>
-            <br /> *@
 
-           @*  <div class="form-group row">
+            <div class="form-group row">
                 <div class="col-4">
-                    <label class="col-4">
-                        <label asp-for="Proveedor.Moneda"></label>
-                    </label>
+                    <label>Moneda</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="Proveedor.Moneda" class="form-control form-border" placeholder="Ingresa la moneda" />
                     <span asp-validation-for="Proveedor.Moneda" class="text-danger"></span>
                 </div>
             </div> *@
-            <br />
-            
-            @* <div class="form-group row mt-2">
-                <div class="col-4">
-                    <label class="col-4">
-                        <label asp-for="Proveedor.idComplementoFK">Complemento</label>
-                    </label>
-                </div>
-                <div class="col-8">
-                    @Html.DropDownListFor(m => m.Proveedor.idComplementoFK,Model.ListaComplemento,"Por favor seleccione una Proveedor",
-                    new {@class="form-control"})
-                </div> *@
 
-            </div>
-            <br />
-            <br />
-            <div class="form-group row">
-                <div class="col-4">
+            <div class="form-group row mt-4">
+                <div class="col-12">
                     <partial name="_VistaCrearVolver" />
                 </div>
             </div>
-
         </div>
-
     </div>
 </form>
 
 @section Scripts
     {
     <script src="https://cdn.tiny.cloud/1/qukxrn62f4bz0iv6z7enaelkkzuzugir28y709xit9xm659s/tinymce/5/tinymce.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
         tinymce.init({
             selector: 'textarea',
             plugins: 'lists',
             menubar: 'file edit format'
-
         });
     </script>
-    }
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        $(document).ready(function () {
+            var message = '@TempData["AlertMessage"]';
+            if (message) {
+                Swal.fire({
+                    title: 'Error',
+                    text: message,
+                    icon: 'error'
+                });
+            }
+        });
+    </script>
+    
+
+}

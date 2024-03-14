@@ -8,7 +8,9 @@ using System.Diagnostics;
 using System.Net.NetworkInformation;
 using System.Xml.Linq;
 using BlogCore.Utilidades;
-
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace BlogCore.Areas.Admin.Controllers
 {
@@ -20,16 +22,33 @@ namespace BlogCore.Areas.Admin.Controllers
         private readonly IContenedorTrabajo _contenedorTrabajo;
         //trabajar con subida de archivos
         private readonly IWebHostEnvironment _hostingEnvironment;
-        public ProveedoresController(IContenedorTrabajo contenedorTrabajo, IWebHostEnvironment hostingEnvironment)
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public ProveedoresController(IContenedorTrabajo contenedorTrabajo, IWebHostEnvironment hostingEnvironment, UserManager<ApplicationUser> userManager)
         {
             _contenedorTrabajo = contenedorTrabajo;
             _hostingEnvironment = hostingEnvironment;
+            _userManager = userManager;
+
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var usuario = _userManager.GetUserAsync(User).Result;
+            var rfcUsuario = usuario.Rfc;
+            IEnumerable<Proveedor> proveedores;
+
+            if (User.IsInRole(CNT.Admin))
+            {
+                proveedores = _contenedorTrabajo.Proveedor.GetAll(includeProperties: "Complemento");
+            }
+            else
+            {
+                proveedores = _contenedorTrabajo.Proveedor.GetAll(filter: p => p.Rfc.Trim().ToUpper() == rfcUsuario.Trim().ToUpper());
+            }
+
+            return View(proveedores);
         }
 
         [HttpGet]
@@ -39,7 +58,7 @@ namespace BlogCore.Areas.Admin.Controllers
             {
                 Complemento = new BlogCore.Models.Complemento(),
                 Proveedor = new BlogCore.Models.Proveedor(),
-            ListaComplemento = _contenedorTrabajo.Complemento.GetListaComplemento()
+                ListaComplemento = _contenedorTrabajo.Complemento.GetListaComplemento()
 
             };
             return View(proveVM);
@@ -49,6 +68,8 @@ namespace BlogCore.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(ProveedorVM proveVM)
         {
+            var usuario = _userManager.GetUserAsync(User).Result;
+            var razonsocial = usuario.razonSocial;
             if (ModelState.IsValid)
             {
                 string rutaPrincipal = _hostingEnvironment.WebRootPath;
@@ -64,10 +85,10 @@ namespace BlogCore.Areas.Admin.Controllers
                     var extension1 = Path.GetExtension(archivos[0].FileName);
                     var extension2 = Path.GetExtension(archivos[1].FileName);
 
-                    // Verifica las extensiones de los archivos
-                    if (extension1 != ".xml" || extension2 != ".pdf")
+                    if (extension1 != ".pdf" || extension2 != ".xml")
                     {
-                        ModelState.AddModelError(string.Empty, "Los formatos de archivos no corresponden");
+                        var message = "Los formatos de archivos no corresponden";
+                        TempData["AlertMessage"] = message;
                         return View(proveVM);
                     }
 
@@ -78,21 +99,48 @@ namespace BlogCore.Areas.Admin.Controllers
                         archivos[0].CopyTo(fileStream1);
                         archivos[1].CopyTo(fileStream2);
                     }
+                    // Renombrar los archivos, sobrescribiendo si existen
+                    string rutaArchivoXml = Path.Combine(subida1, nombreArchivo1);
+                    string rutaArchivoPdf = Path.Combine(subida2, nombreArchivo2);
+                    
+                   
 
-                    string xmlPath = Path.Combine(subida1, nombreArchivo1 + extension1);
+
+
+                    string xmlPath = Path.Combine(subida2, nombreArchivo2 + extension2);
                     var xmlData = XDocument.Load(xmlPath);
                     string rfc = xmlData.Root.Element("{http://www.sat.gob.mx/cfd/4}Emisor").Attribute("Rfc").Value;
                     string tipo = xmlData.Root.Attribute("TipoDeComprobante").Value;
                     string totalStr = xmlData.Root.Attribute("Total").Value;
                     string folio = xmlData.Root.Attribute("Folio").Value;
+                    string fecha = xmlData.Root.Attribute("Fecha").Value;
+                    DateTime fechaConvertida;
+
+                    if (DateTime.TryParse(fecha, out fechaConvertida))
+                    {
+                        // La conversión fue exitosa, ahora puedes usar fechaConvertida como DateTime
+                        // Por ejemplo, puedes mostrarla en un formato específico
+                        Console.WriteLine(fechaConvertida.ToString("yyyy-MM-dd"));
+                    }
+                    else
+                    {
+                        // La conversión falló, manejar el error según sea necesario
+                        Console.WriteLine("No se pudo convertir la fecha.");
+                    }
+
                     // Modificar el nombre del archivo con RFC y folio
-                    string nombreArchivoXml = $"{rfc.Replace(" ", "")}-{folio}{extension1}";
-                    string nombreArchivoPdf = $"{rfc.Replace(" ", "")}-{folio}{extension2}";
+                    string nombreArchivoXml = $"{rfc.Replace(" ", "")}-{folio}{extension2}";
+                    string nombreArchivoPdf = $"{rfc.Replace(" ", "")}-{folio}{extension1}";
 
                     // Renombrar los archivos
-                    System.IO.File.Move(Path.Combine(subida1, nombreArchivo1 + extension1), Path.Combine(subida1, nombreArchivoXml));
-                    System.IO.File.Move(Path.Combine(subida2, nombreArchivo2 + extension2), Path.Combine(subida2, nombreArchivoPdf));
+                    System.IO.File.Move(Path.Combine(subida1, nombreArchivo1 + extension1), Path.Combine(subida1, nombreArchivoPdf));
+                    System.IO.File.Move(Path.Combine(subida2, nombreArchivo2 + extension2), Path.Combine(subida2, nombreArchivoXml));
 
+                    // Utilizar las rutas renombradas al eliminar los archivos
+                    string rutaArchivoPdfRenombrado = Path.Combine(subida1, nombreArchivoPdf);
+                    string rutaArchivoXmlRenombrado = Path.Combine(subida2, nombreArchivoXml);
+
+                    
                     // Obtener año y mes actuales
                     DateTime now = DateTime.Now;
                     string year = now.Year.ToString();
@@ -121,48 +169,118 @@ namespace BlogCore.Areas.Admin.Controllers
                     }
                     if (tipo == "I")
                     {
+                        
+
                         string moneda = xmlData.Root.Attribute("Moneda").Value;
                         string uuidf = xmlData.Root
                                             .Element("{http://www.sat.gob.mx/cfd/4}Complemento")
                                             .Element("{http://www.sat.gob.mx/TimbreFiscalDigital}TimbreFiscalDigital")
                                             .Attribute("UUID").Value;
-                        string formapago = xmlData.Root.Attribute("FormaPago").Value;
+                        var uuidfExistente = _contenedorTrabajo.Proveedor.GetAll().Any(p => p.UUIDF == uuidf);
+                        if (uuidfExistente)
+                        {
+
+                            EliminarArchivos(rutaArchivoXmlRenombrado, rutaArchivoPdfRenombrado);
+                            var message = $"Ya existe un registro de esta factura ";
+                            TempData["AlertMessage"] = message;
+                            return View(proveVM);
+
+                        }
+                        var usuarioI = _userManager.GetUserAsync(User).Result;
+                        var rfcusuario = usuarioI.Rfc;
+
+                        if (rfcusuario != rfc && !User.IsInRole(CNT.Admin))
+                        {
+                            EliminarArchivos(rutaArchivoXmlRenombrado, rutaArchivoPdfRenombrado);
+                            var message = "La factura no le pertenece al usuario logeado";
+                            TempData["AlertMessage"] = message;
+                            return View(proveVM);
+                        }
+                        //if (fechaConvertida.Year != DateTime.Now.Year)
+                        //{
+                        //    EliminarArchivos(rutaArchivoXmlRenombrado, rutaArchivoPdfRenombrado);
+                        //    var message = "La factura debe ser del ano actual.";
+                        //    TempData["AlertMessage"] = message;
+                        //    return View(proveVM);
+                        //}
+
+                        string metodopago = xmlData.Root.Attribute("MetodoPago").Value;
+
                         // Mover los archivos a las carpetas finales
                         System.IO.File.Move(Path.Combine(subida1, nombreArchivoXml), Path.Combine(subidaFinalXml, nombreArchivoXml));
                         System.IO.File.Move(Path.Combine(subida2, nombreArchivoPdf), Path.Combine(subidaFinalPdf, nombreArchivoPdf));
-
-                        proveVM.Proveedor.Moneda = moneda;
-                        proveVM.Proveedor.Folio = folio;
-                        proveVM.Proveedor.Monto = total;
-                        proveVM.Proveedor.idComplementoFK = 1;
-                        proveVM.Proveedor.Estatus = "2";
-                        proveVM.Proveedor.statusComplemento = "NA";
-                        proveVM.Proveedor.Solicitante = "Solicitante_Ejemplo";
-                        proveVM.Proveedor.nombreProveedor = "Proveedor_ejemplo";
-                        if (User.IsInRole(CNT.Admin))
-                        {
-                            proveVM.Proveedor.Notas = "Na";
-
-                        }
+                        
                         if (User.IsInRole(CNT.Usuario))
                         {
                             proveVM.Proveedor.comentariosSeguimiento = "Na";
 
                         }
+                        
+                        var statusAX = "2";
+                      
+                        var statusBase = "Na";
+                        switch (statusAX)
+                        {
+                            case "2":
+                                statusBase = "Revision";
+                                break;
+                            case "3":
+                                 statusBase = "Cancelado";
+                                break;
+                            case "4":
+                                statusBase = "Validada";
+                                break;
+                            case "5":
+                                statusBase = "Pagada";
+                                break;
+                            // Puedes agregar más casos según tus necesidades
+                            default:
+                                break;
+                        }
+                                proveVM.Proveedor.Moneda = moneda;
+                        proveVM.Proveedor.Folio = folio;
+                        proveVM.Proveedor.Monto = total;
+                        proveVM.Proveedor.Estatus =statusBase;
+                        proveVM.Proveedor.idComplementoFK = 1;
+                        proveVM.Proveedor.metodoPago = metodopago;
+                        if (metodopago=="PPD")
+                        {
+                            proveVM.Proveedor.statusComplemento = "S";
+
+                        }
+                        else
+                        {
+                            proveVM.Proveedor.statusComplemento = "NA";
+                        }
+                        proveVM.Proveedor.Solicitante = "Solicitante_Ejemplo";
+                        proveVM.Proveedor.nombreProveedor = razonsocial;
                         proveVM.Proveedor.UUIDF = uuidf;
-                        proveVM.Proveedor.metodoPago = formapago;
                         proveVM.Proveedor.FechaRegistro = DateTime.Now;
                         proveVM.Proveedor.fechaPago = DateTime.Now;
                         proveVM.Proveedor.fechaProximaPago = DateTime.Now;
-                        proveVM.Proveedor.fechaFactura = DateTime.Now;
+                        //fecha limite del siguiente mes mas 10 dias
+                        DateTime fechaLimite = new DateTime(DateTime.Today.Year, DateTime.Today.Month + 1, 11);
+
+
+
+                        proveVM.Proveedor.fechaFactura = fechaConvertida;
                         proveVM.Proveedor.XmlUrl = @"\Documentos\" + year + @"\" + month + @"\" + rfc + @"\" + nombreArchivoXml;
                         proveVM.Proveedor.PdfUrl = @"\Documentos\" + year + @"\" + month + @"\" + rfc + @"\" + nombreArchivoPdf;
-
+                        proveVM.Proveedor.Rfc = rfc;
                         _contenedorTrabajo.Proveedor.add(proveVM.Proveedor);
 
                     }
                     else if (tipo == "P")
                     {
+                        var usuarioI = _userManager.GetUserAsync(User).Result;
+                        var rfcusuario = usuarioI.Rfc;
+                        if (rfcusuario != rfc && !User.IsInRole(CNT.Admin))
+                        {
+                            EliminarArchivos(rutaArchivoXmlRenombrado, rutaArchivoPdfRenombrado);
+                            var message = "La factura no le pertenece al usuario logeado";
+                            TempData["AlertMessage"] = message;
+                            return View(proveVM);
+                        }
                         XNamespace pago20 = "http://www.sat.gob.mx/Pagos20";
 
                         // Obtener el elemento Pagos
@@ -180,12 +298,43 @@ namespace BlogCore.Areas.Admin.Controllers
                                 if (timbreFiscalDigital != null)
                                 {
                                     string uuid = (string)timbreFiscalDigital.Attribute("UUID");
+                                    //verifica que no suban el mismo complemento 
+                                    var uuidfExistente = _contenedorTrabajo.Complemento.GetAll().Any(p => p.UUIDC == uuid);
+                                    if (uuidfExistente)
+                                    {
+                                        EliminarArchivos(rutaArchivoXmlRenombrado, rutaArchivoPdfRenombrado);
+                                        ModelState.AddModelError(string.Empty, "Ya existe un registro de esta factura");
+                                        return View(proveVM);
+                                    }
 
                                     // Guardar los IdDocumento en una lista
                                     var idDocumentos = xmlData.Descendants(pago20 + "DoctoRelacionado")
                                         .Select(docto => (string)docto.Attribute("IdDocumento"))
                                         .ToList();
 
+                                    //Manejar la logica de si algun elemento de la lista esta en los registros de proveedores cambie el StatusComplemento a C
+                                    var proveedoresConIdDocumento = _contenedorTrabajo.Proveedor.GetAll().Where(p => idDocumentos.Contains(p.UUIDF)).ToList();
+
+                                    // Validar si todos los elementos de idDocumentos están en proveedoresConIdDocumento
+                                    if (idDocumentos.All(id => proveedoresConIdDocumento.Any(p => p.UUIDF == id)))
+                                    {
+                                        foreach (var proveedor in proveedoresConIdDocumento)
+                                        {
+                                            proveedor.statusComplemento = "C";
+                                            proveedor.Estatus = "Complemento";
+                                            _contenedorTrabajo.Proveedor.Update(proveedor);
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        // No todos los elementos de idDocumentos están en proveedoresConIdDocumento
+                                        // Realizar alguna acción, como mostrar un mensaje de error
+                                        var message = "No se han subido todas las facturas que respalda este complemento";
+                                        TempData["AlertMessage"] = message;
+                                        return View(proveVM);
+
+                                    }
                                     // Calcular la suma de todos los ImpSaldoInsoluto
                                     float sumaImpSaldoInsoluto = xmlData.Descendants(pago20 + "DoctoRelacionado")
                                         .Sum(docto => (float?)docto.Attribute("ImpSaldoInsoluto") ?? 0);
@@ -204,6 +353,7 @@ namespace BlogCore.Areas.Admin.Controllers
 
 
                                     proveVM.Complemento.UUIDC = uuid;
+                                    proveVM.Complemento.Rfc = rfc;
                                     proveVM.Complemento.Monto = montoTotalPagos;
                                     proveVM.Complemento.XmlUrl = @"\Documentos\Cfdi_Pagos\" + year + @"\" + month + @"\" + rfc + @"\" + nombreArchivoXml;
                                     proveVM.Complemento.PdfUrl = @"\Documentos\Cfdi_Pagos\" + year + @"\" + month + @"\" + rfc + @"\" + nombreArchivoPdf;
@@ -249,7 +399,7 @@ namespace BlogCore.Areas.Admin.Controllers
 
 
 
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Edit(int? id)
         {
@@ -264,6 +414,7 @@ namespace BlogCore.Areas.Admin.Controllers
             return View(proveVM);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(ProveedorVM proveVM)
@@ -277,6 +428,7 @@ namespace BlogCore.Areas.Admin.Controllers
                 proveVM.Proveedor.OrdenCompra = proveedorExistente.OrdenCompra;
                 proveVM.Proveedor.statusComplemento = proveedorExistente.statusComplemento;
                 proveVM.Proveedor.Folio = proveedorExistente.Folio;
+                proveVM.Proveedor.Notas = proveedorExistente.Notas;
                 proveVM.Proveedor.Monto = proveedorExistente.Monto;
                 proveVM.Proveedor.Estatus = proveedorExistente.Estatus;
                 proveVM.Proveedor.UUIDF=proveedorExistente.UUIDF;
@@ -286,6 +438,7 @@ namespace BlogCore.Areas.Admin.Controllers
                 proveVM.Proveedor.Solicitante = proveedorExistente.Solicitante;
                 proveVM.Proveedor.nombreProveedor = proveedorExistente.nombreProveedor;
                 proveVM.Proveedor.Moneda = proveedorExistente.Moneda;
+                proveVM.Proveedor.Rfc = proveedorExistente.Rfc;
                 proveVM.Proveedor.idComplementoFK= proveedorExistente.idComplementoFK;
 
 
@@ -293,7 +446,7 @@ namespace BlogCore.Areas.Admin.Controllers
                 proveVM.Proveedor.FechaRegistro = DateTime.Now;
                 proveVM.Proveedor.fechaPago = DateTime.Now;
                 proveVM.Proveedor.fechaProximaPago = DateTime.Now;
-                proveVM.Proveedor.fechaFactura = DateTime.Now;
+                proveVM.Proveedor.fechaFactura =proveedorExistente.fechaFactura;
                 // Actualizar el proveedor en la base de datos
                 _contenedorTrabajo.Proveedor.Update(proveVM.Proveedor);
                 _contenedorTrabajo.Save();
@@ -311,7 +464,20 @@ namespace BlogCore.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Json(new { data = _contenedorTrabajo.Proveedor.GetAll(includeProperties: "Complemento") });
+            var usuario = _userManager.GetUserAsync(User).Result;
+            var rfcUsuario = usuario.Rfc;
+            IEnumerable<Proveedor> proveedores;
+
+            if (User.IsInRole(CNT.Admin))
+            {
+                proveedores = _contenedorTrabajo.Proveedor.GetAll(includeProperties: "Complemento");
+            }
+            else
+            {
+                proveedores = _contenedorTrabajo.Proveedor.GetAll(filter: p => p.Rfc == rfcUsuario, includeProperties: "Complemento");
+            }
+
+            return Json(new { data = proveedores });
         }
 
         [HttpDelete]
@@ -321,7 +487,12 @@ namespace BlogCore.Areas.Admin.Controllers
 
             if (proveedorExistente == null)
             {
-                return Json(new { success = false, message = "Proveedor no encontrado" });
+                return Json(new { success = false, message = "Factura no encontrado" });
+            }
+
+            if (proveedorExistente.Estatus != "Revision")
+            {
+                return Json(new { success = false, message = "No se puede eliminar la factura en el actual estatus" });
             }
 
             string rutaDirectorioPrincipal = _hostingEnvironment.WebRootPath;
@@ -344,11 +515,12 @@ namespace BlogCore.Areas.Admin.Controllers
             return Json(new { success = true, message = "Proveedor borrado correctamente" });
         }
 
-        private void EliminarArchivo(string rutaDirectorioPrincipal, string archivoUrl)
+
+        private void EliminarArchivo(string rutaArchivoXmlRenombrado, string archivoUrl)
         {
             if (!string.IsNullOrEmpty(archivoUrl))
             {
-                var filePath = Path.Combine(rutaDirectorioPrincipal, archivoUrl.TrimStart('\\'));
+                var filePath = Path.Combine(rutaArchivoXmlRenombrado, archivoUrl.TrimStart('\\'));
 
                 if (System.IO.File.Exists(filePath))
                 {
@@ -364,9 +536,22 @@ namespace BlogCore.Areas.Admin.Controllers
                 }
             }
         }
+        // Método para eliminar archivos en caso de algun error
+        private void EliminarArchivos(string rutaArchivoXmlRenombrado, string rutaArchivoPdfRenombrado)
+        {
+            string rutaXml = Path.Combine(rutaArchivoXmlRenombrado);
+            string rutaPdf = Path.Combine(rutaArchivoPdfRenombrado);
 
+            if (System.IO.File.Exists(rutaXml))
+            {
+                System.IO.File.Delete(rutaXml);
+            }
 
-
+            if (System.IO.File.Exists(rutaPdf))
+            {
+                System.IO.File.Delete(rutaPdf);
+            }
+        }
 
         #endregion
     }

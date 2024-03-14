@@ -16,7 +16,7 @@ namespace BlogCore.Models
 
 
         [Display(Name = "ordenCompra")]
-        public int OrdenCompra { get; set; }
+        public string OrdenCompra { get; set; }
 
 
         [Display(Name = "statusComplemento")]
@@ -84,8 +84,10 @@ namespace BlogCore.Models
         public DateTime fechaFactura { get; set; }
 
 
+        [Display(Name = "Rfc")]
+        public string Rfc { get; set; }
 
-        [Required]
+        
         public int idComplementoFK { get; set; }
 
         [ForeignKey("idComplementoFK")]

@@ -86,12 +86,26 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     <script src="https://cdn.tiny.cloud/1/qukxrn62f4bz0iv6z7enaelkkzuzugir28y709xit9xm659s/tinymce/5/tinymce.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <script>
         tinymce.init({
             selector: 'textarea',
             plugins: 'lists',
             menubar: 'file edit format'
 
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            var message = '@TempData["AlertMessage"]';
+            if (message) {
+                Swal.fire({
+                    title: 'Error',
+                    text: message,
+                    icon: 'error'
+                });
+            }
         });
     </script>
 }

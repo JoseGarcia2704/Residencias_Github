@@ -1,16 +1,11 @@
-﻿/* En tu hoja de estilo (BlogCore.styles.css) */
-/*.custom-carousel {
-    max-height: 10%;*/ /* Puedes ajustar el valor según tus necesidades */
-    /*max-width:100%;
-    overflow: hidden;*/ /* Para ocultar cualquier contenido que supere la altura máxima */
-/*}
-
-carousel-item img {
-    height: 10%;
+﻿.status-cell {
     display: flex;
     align-items: center;
-    justify-content:  center;
-    width: auto;
-}*/
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 1.5rem; /* Aumenta el tamaño del texto */
+    color: white; /* Cambia el color del texto a blanco */
+}
 
 

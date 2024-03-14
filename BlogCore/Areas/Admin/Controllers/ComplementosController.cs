@@ -1,7 +1,9 @@
 ﻿using BlogCore.AccesoDatos.Data.Repository.IRepository;
 using BlogCore.Data;
 using BlogCore.Models;
+using BlogCore.Utilidades;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
@@ -14,20 +16,37 @@ namespace BlogCore.Areas.Admin.Controllers
         private readonly IContenedorTrabajo _contenedorTrabajo;
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _hostingEnvironment;
+        private readonly UserManager<ApplicationUser> _userManager;
 
 
-        public ComplementosController(IContenedorTrabajo contenedorTrabajo , ApplicationDbContext context, IWebHostEnvironment hostingEnvironment )
+        public ComplementosController(IContenedorTrabajo contenedorTrabajo , ApplicationDbContext context, IWebHostEnvironment hostingEnvironment, UserManager<ApplicationUser> userManager)
         {
             _contenedorTrabajo = contenedorTrabajo;
             _context = context;
             _hostingEnvironment = hostingEnvironment;
+            _userManager = userManager;
 
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var usuario = _userManager.GetUserAsync(User).Result;
+            var rfcUsuario = usuario.Rfc;
+            IEnumerable<Complemento> complementos;
+
+            if (User.IsInRole(CNT.Admin))
+            {
+                complementos = _contenedorTrabajo.Complemento.GetAll();
+            }
+            else
+            {
+                complementos = _contenedorTrabajo.Complemento.GetAll(filter: c => c.Rfc == rfcUsuario);
+            }
+
+            var rfcList = complementos.Select(c => c.Rfc).Distinct().ToList();
+
+            return View(rfcList);
         }
 
         [HttpGet]
@@ -112,7 +131,20 @@ namespace BlogCore.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Json(new { data = _contenedorTrabajo.Complemento.GetAll() });
+            var usuario = _userManager.GetUserAsync(User).Result;
+            var rfcUsuario = usuario.Rfc;
+            IEnumerable<Complemento> complementos;
+
+            if (User.IsInRole(CNT.Admin))
+            {
+                complementos = _contenedorTrabajo.Complemento.GetAll();
+            }
+            else
+            {
+                complementos = _contenedorTrabajo.Complemento.GetAll(filter: c => c.Rfc == rfcUsuario);
+            }
+
+            return Json(new { data = complementos });
         }
        
         

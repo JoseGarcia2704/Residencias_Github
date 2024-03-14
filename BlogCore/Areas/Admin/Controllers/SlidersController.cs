@@ -44,19 +44,24 @@ namespace BlogCore.Areas.Admin.Controllers
             {
                 string rutaPrincipal = _hostingEnvironment.WebRootPath;
                 var archivos = HttpContext.Request.Form.Files;
-               
-                    //Nuevo Slider
-                    String nombreArchivo=Guid.NewGuid().ToString();
+
+                if (archivos.Count != 1)
+                {
+                    TempData["AlertMessage"] = "Falta subir el archivo ";
+                    return View();
+                }
+                //Nuevo Slider
+                String nombreArchivo=Guid.NewGuid().ToString();
                     var subidas = Path.Combine(rutaPrincipal, @"imagenes\sliders");
                     var extension = Path.GetExtension(archivos[0].FileName);
 
-                    if (extension != ".jpg" && extension != ".jpeg" && extension != ".png")
-                    {
-                        ModelState.AddModelError(string.Empty, "Solo se permiten archivos con extensión .jpg, .jpeg o .png");
-                        return View();
-                    }
+                if (extension != ".jpg" && extension != ".jpeg" && extension != ".png")
+                {
+                    TempData["AlertMessage"] = "Solo se permiten archivos con extension .jpeg o .png";
+                    return View();
+                }
 
-                    using (var fileStreams= new FileStream(Path.Combine(subidas, nombreArchivo + extension),FileMode.Create))
+                using (var fileStreams= new FileStream(Path.Combine(subidas, nombreArchivo + extension),FileMode.Create))
                     {
                         archivos[0].CopyTo(fileStreams);
                     }
@@ -99,11 +104,11 @@ namespace BlogCore.Areas.Admin.Controllers
                     var extension = Path.GetExtension(archivos[0].FileName);
                     var nuevaExtension = Path.GetExtension(archivos[0].FileName);
 
-                    if (extension != ".jpeg" && extension != ".png")
-                    {
-                        ModelState.AddModelError(string.Empty, "Solo se permiten archivos con extensión .jpg, .jpeg o .png");
-                        return View();
-                    }
+                    if (extension != ".jpg" && extension != ".jpeg" && extension != ".png")
+                        {
+                        TempData["AlertMessage"] = "Solo se permiten archivos con extension .jpeg o .png";
+                        return View(slider);
+                        }
 
                     var  rutaImagen=Path.Combine(rutaPrincipal, sliderDesdeDb.UrlImagen.TrimStart('\\'));
                     if (System.IO.File.Exists(rutaImagen))
@@ -152,8 +157,15 @@ namespace BlogCore.Areas.Admin.Controllers
                 return Json(new { success = false, Message = "Error borrando slider" });
 
             }
+            // Obtener la ruta del archivo a borrar
+            string rutaArchivo = Path.Combine(_hostingEnvironment.WebRootPath, sliderDesdeDb.UrlImagen.TrimStart('\\'));
 
-            
+            // Verificar si el archivo existe y borrarlo
+            if (System.IO.File.Exists(rutaArchivo))
+            {
+                System.IO.File.Delete(rutaArchivo);
+            }
+
             _contenedorTrabajo.Slider.Remove(sliderDesdeDb);
             _contenedorTrabajo.Save();
             return Json(new { success = true, Message = "Slider Borrada Correctamente" });
