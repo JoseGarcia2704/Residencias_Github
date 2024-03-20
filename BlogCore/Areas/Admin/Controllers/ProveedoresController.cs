@@ -47,6 +47,8 @@ namespace BlogCore.Areas.Admin.Controllers
             {
                 proveedores = _contenedorTrabajo.Proveedor.GetAll(filter: p => p.Rfc.Trim().ToUpper() == rfcUsuario.Trim().ToUpper());
             }
+           
+
 
             return View(proveedores);
         }
@@ -204,6 +206,31 @@ namespace BlogCore.Areas.Admin.Controllers
                         //    return View(proveVM);
                         //}
 
+                        
+
+                        //prueba de fecha limite 10 dias del siguiente mes
+                           
+                        //    var pago= DateTime.Now;
+                        ////pago = proveVM.Proveedor.fechaPago;
+
+                        //// Obtener la fecha límite para el pago (10 del siguiente mes)
+                        //DateTime fechaLimitePago = pago.AddMonths(1);
+                        //fechaLimitePago = new DateTime(fechaLimitePago.Year, fechaLimitePago.Month, 10);
+
+                        //// Verificar si alguna factura registrada tiene statusComplemento diferente de "C" y fecha de pago el día 10 del siguiente mes
+                        //var facturaConStatusIncorrecto = _contenedorTrabajo.Proveedor.GetAll()
+                        //    .Any(factura => factura.statusComplemento != "C" && factura.fechaPago.Year == fechaLimitePago.Year && factura.fechaPago.Month == fechaLimitePago.Month && factura.fechaPago.Day == 10);
+
+                        //if (facturaConStatusIncorrecto)
+                        //{
+                        //    EliminarArchivos(rutaArchivoXmlRenombrado, rutaArchivoPdfRenombrado);
+                        //    ModelState.AddModelError(nameof(proveVM.Proveedor.fechaPago), "No se puede subir una nueva factura si hay una factura registrada con statusComplemento diferente a 'C' y fecha de pago el día 10 del siguiente mes.");
+                        //    return View(proveVM);
+                        //}
+
+
+
+
                         string metodopago = xmlData.Root.Attribute("MetodoPago").Value;
 
                         // Mover los archivos a las carpetas finales
@@ -256,10 +283,12 @@ namespace BlogCore.Areas.Admin.Controllers
                         proveVM.Proveedor.nombreProveedor = razonsocial;
                         proveVM.Proveedor.UUIDF = uuidf;
                         proveVM.Proveedor.FechaRegistro = DateTime.Now;
-                        proveVM.Proveedor.fechaPago = DateTime.Now;
+                        proveVM.Proveedor.fechaPago = DateTime.Now.AddMonths(-1);
+
+
                         proveVM.Proveedor.fechaProximaPago = DateTime.Now;
-                        //fecha limite del siguiente mes mas 10 dias
-                        DateTime fechaLimite = new DateTime(DateTime.Today.Year, DateTime.Today.Month + 1, 11);
+                        proveVM.Proveedor.fechaProximaPago = DateTime.Now;
+
 
 
 
@@ -268,6 +297,8 @@ namespace BlogCore.Areas.Admin.Controllers
                         proveVM.Proveedor.PdfUrl = @"\Documentos\" + year + @"\" + month + @"\" + rfc + @"\" + nombreArchivoPdf;
                         proveVM.Proveedor.Rfc = rfc;
                         _contenedorTrabajo.Proveedor.add(proveVM.Proveedor);
+                        
+                       
 
                     }
                     else if (tipo == "P")
@@ -312,6 +343,11 @@ namespace BlogCore.Areas.Admin.Controllers
                                         .Select(docto => (string)docto.Attribute("IdDocumento"))
                                         .ToList();
 
+                                    // Guardar los IdDocumento en una lista
+                                    var folioc = xmlData.Descendants(pago20 + "DoctoRelacionado")
+                                        .Select(docto => (string)docto.Attribute("Folio"))
+                                        .ToList();
+
                                     //Manejar la logica de si algun elemento de la lista esta en los registros de proveedores cambie el StatusComplemento a C
                                     var proveedoresConIdDocumento = _contenedorTrabajo.Proveedor.GetAll().Where(p => idDocumentos.Contains(p.UUIDF)).ToList();
 
@@ -329,8 +365,15 @@ namespace BlogCore.Areas.Admin.Controllers
                                     else
                                     {
                                         // No todos los elementos de idDocumentos están en proveedoresConIdDocumento
-                                        // Realizar alguna acción, como mostrar un mensaje de error
-                                        var message = "No se han subido todas las facturas que respalda este complemento";
+                                        EliminarArchivos(rutaArchivoXmlRenombrado, rutaArchivoPdfRenombrado);
+                                        // Obtener los folios no encontrados
+                                        var foliosNoEncontrados = idDocumentos
+                                            .Where(id => !proveedoresConIdDocumento.Any(p => p.UUIDF == id))
+                                            .Select(id => folioc[idDocumentos.IndexOf(id)])
+                                            .ToList();
+
+                                        // Construir el mensaje de error con los folios no encontrados
+                                        var message = $"No se han subido todas las facturas que respalda este complemento. Los siguientes folios no se encontraron en la base de datos: {string.Join(", ", foliosNoEncontrados)}";
                                         TempData["AlertMessage"] = message;
                                         return View(proveVM);
 
@@ -390,10 +433,17 @@ namespace BlogCore.Areas.Admin.Controllers
 
                     _contenedorTrabajo.Save();
 
-                    return RedirectToAction(nameof(Index));
+                    var messagesu = "Factura subida correctamente";
+                    TempData["SuccessMessage"] = messagesu;
+                    // Mostrar la alerta de éxito antes de redirigir al índice
+                    TempData["ShowSuccessAlert"] = true;
                 }
-            }
 
+                //aqui truene si no sube los dos archivos
+                var message_ar = "Suba la factura en los formatos Pdf y Xml correspondientemente ";
+                TempData["AlertMessage"] = message_ar;
+            }
+            //return RedirectToAction(nameof(Index));
             return View(proveVM);
         }
 

@@ -125,11 +125,44 @@
                 Swal.fire({
                     title: 'Error',
                     text: message,
-                    icon: 'error'
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
                 });
             }
         });
     </script>
+    <script>
+        $(document).ready(function () {
+            var message_ar = '@TempData["AlertMessage"]';
+            if (message_ar) {
+                Swal.fire({
+                    title: 'Error',
+                    text: message,
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            var showSuccessAlert = '@TempData["ShowSuccessAlert"]';
+            var successMessage = '@TempData["SuccessMessage"]';
+            if (showSuccessAlert && successMessage) {
+                Swal.fire({
+                    title: 'Éxito',
+                    text: successMessage,
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '@Url.Action("Index", "Proveedores")'; // Reemplaza "NombreDeTuControlador" por el nombre real de tu controlador
+                    }
+                });
+            }
+        });
+    </script>
+
     
 
 }
