@@ -206,27 +206,32 @@ namespace BlogCore.Areas.Admin.Controllers
                         //    return View(proveVM);
                         //}
 
-                        
 
-                        //prueba de fecha limite 10 dias del siguiente mes
-                           
-                        //    var pago= DateTime.Now;
-                        ////pago = proveVM.Proveedor.fechaPago;
+                        var fechaActual = DateTime.Now;
 
-                        //// Obtener la fecha límite para el pago (10 del siguiente mes)
-                        //DateTime fechaLimitePago = pago.AddMonths(1);
-                        //fechaLimitePago = new DateTime(fechaLimitePago.Year, fechaLimitePago.Month, 10);
+                        // Obtener todas las fechas de pago y statusComplemento del proveedor con el RFC del usuario logeado
+                        var fechasPagos = _contenedorTrabajo.Proveedor.GetAll().Where(factura => factura.Rfc == rfcusuario).Select(factura => new { factura.fechaPago, factura.statusComplemento }).ToList();
 
-                        //// Verificar si alguna factura registrada tiene statusComplemento diferente de "C" y fecha de pago el día 10 del siguiente mes
-                        //var facturaConStatusIncorrecto = _contenedorTrabajo.Proveedor.GetAll()
-                        //    .Any(factura => factura.statusComplemento != "C" && factura.fechaPago.Year == fechaLimitePago.Year && factura.fechaPago.Month == fechaLimitePago.Month && factura.fechaPago.Day == 10);
+                        // Verificar si ya es 10 del siguiente mes
+                        if (fechaActual.Day >= 10)
+                        {
+                            foreach (var factura in fechasPagos)
+                            {
+                                var fechaLimitePago = factura.fechaPago.AddMonths(1);
+                                fechaLimitePago = new DateTime(fechaLimitePago.Year, fechaLimitePago.Month, 10);
 
-                        //if (facturaConStatusIncorrecto)
-                        //{
-                        //    EliminarArchivos(rutaArchivoXmlRenombrado, rutaArchivoPdfRenombrado);
-                        //    ModelState.AddModelError(nameof(proveVM.Proveedor.fechaPago), "No se puede subir una nueva factura si hay una factura registrada con statusComplemento diferente a 'C' y fecha de pago el día 10 del siguiente mes.");
-                        //    return View(proveVM);
-                        //}
+                                if (factura.statusComplemento != "C" && fechaActual >= fechaLimitePago)
+                                {
+                                    EliminarArchivos(rutaArchivoXmlRenombrado, rutaArchivoPdfRenombrado);
+                                    var message = $"No se puede subir una nueva factura si la fecha limite de pago ya ha pasado y tiene facturas sin complemento ";
+                                    TempData["AlertMessage"] = message;
+                                    return View(proveVM);
+                                }
+                            }
+                        }
+
+
+
 
 
 
@@ -286,7 +291,6 @@ namespace BlogCore.Areas.Admin.Controllers
                         proveVM.Proveedor.fechaPago = DateTime.Now.AddMonths(-1);
 
 
-                        proveVM.Proveedor.fechaProximaPago = DateTime.Now;
                         proveVM.Proveedor.fechaProximaPago = DateTime.Now;
 
 
